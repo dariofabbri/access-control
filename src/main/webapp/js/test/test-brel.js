@@ -5,7 +5,7 @@ RolePermission = Backbone.RelationalModel.extend({
 
 Role = Backbone.RelationalModel.extend({
 	
-	urlRoot: "/ivncr/api/roles",
+	urlRoot: "api/roles",
 	
 	relations: [{
 		type: Backbone.HasMany,
@@ -21,7 +21,7 @@ Role = Backbone.RelationalModel.extend({
 
 Permission = Backbone.RelationalModel.extend({
 	
-	urlRoot: "/ivncr/api/roles",
+	urlRoot: "api/roles",
 	
 	relations: [{
 		type: Backbone.HasMany,

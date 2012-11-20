@@ -9,9 +9,9 @@
 
         <!-- Database connection settings -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost/ivncr</property>
-        <property name="hibernate.connection.username">ivncr</property>
-        <property name="hibernate.connection.password">ivncr</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost/actl</property>
+        <property name="hibernate.connection.username">actl</property>
+        <property name="hibernate.connection.password">actl</property>
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.timeout">1800</property>
@@ -33,10 +33,10 @@
         <property name="show_sql">true</property>
 
 		<!-- Mappings -->
-        <mapping class="it.dariofabbri.ivncr.model.security.User" />
-        <mapping class="it.dariofabbri.ivncr.model.security.Role" />
-        <mapping class="it.dariofabbri.ivncr.model.security.Permission" />
-        <mapping class="it.dariofabbri.ivncr.model.contact.Contact" />
+        <mapping class="it.dariofabbri.accesscontrol.model.security.User" />
+        <mapping class="it.dariofabbri.accesscontrol.model.security.Role" />
+        <mapping class="it.dariofabbri.accesscontrol.model.security.Permission" />
+        <mapping class="it.dariofabbri.accesscontrol.model.contact.Contact" />
 
     </session-factory>
 

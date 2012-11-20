@@ -1,12 +1,12 @@
 Role = Backbone.Model.extend({
 	
-	urlRoot: "/ivncr/api/roles",
+	urlRoot: "api/roles",
 });
 
 
 Permission = Backbone.Model.extend({
 	
-	urlRoot: "/ivncr/api/permissions",
+	urlRoot: "api/permissions",
 
 });
 
@@ -15,7 +15,7 @@ RolePermissions = Backbone.Collection.extend({
 	
 	initialize: function(options) {
 	
-		this.url = "/ivncr/api/roles/" + options.roleId + "/permissions";
+		this.url = "api/roles/" + options.roleId + "/permissions";
 	},
 	
 	parse: function(response) {
@@ -33,7 +33,7 @@ RolePermissions = Backbone.Collection.extend({
 
 Roles = Backbone.Collection.extend({
 	
-	url: "/ivncr/api/roles",
+	url: "api/roles",
 	
 	parse: function(response) {
 		
@@ -68,7 +68,7 @@ var permission = new Permission({
 	permissionString: "*"
 });
 
-permission.urlRoot = "/ivncr/api/roles/" + role.id + "/permissions";
+permission.urlRoot = "api/roles/" + role.id + "/permissions";
 permissions.create(permission, {async: false});
 
 permissions.fetch();
