@@ -32,11 +32,17 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
-		<!-- Mappings -->
+		<!-- Entities mappings -->
         <mapping class="it.dariofabbri.accesscontrol.model.security.User" />
         <mapping class="it.dariofabbri.accesscontrol.model.security.Role" />
         <mapping class="it.dariofabbri.accesscontrol.model.security.Permission" />
+        
         <mapping class="it.dariofabbri.accesscontrol.model.contact.Contact" />
+
+		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.Accesso" />
+		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.StatoAccesso" />
+		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.TipoDocumento" />
+		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore" />
 
     </session-factory>
 

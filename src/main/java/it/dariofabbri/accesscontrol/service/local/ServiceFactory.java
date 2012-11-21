@@ -2,6 +2,8 @@ package it.dariofabbri.accesscontrol.service.local;
 
 import it.dariofabbri.accesscontrol.service.local.contact.ContactService;
 import it.dariofabbri.accesscontrol.service.local.contact.ContactServiceImpl;
+import it.dariofabbri.accesscontrol.service.local.lut.LUTService;
+import it.dariofabbri.accesscontrol.service.local.lut.LUTServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionService;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.role.RoleService;
@@ -40,6 +42,12 @@ public class ServiceFactory {
 	public static PermissionService createPermissionService() {
 		
 		PermissionService service = SessionDecorator.<PermissionService>createProxy(new PermissionServiceImpl(), PermissionService.class);
+		return service;
+	}
+	
+	public static LUTService createLUTService() {
+		
+		LUTService service = SessionDecorator.<LUTService>createProxy(new LUTServiceImpl(), LUTService.class);
 		return service;
 	}
 }
