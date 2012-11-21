@@ -1,34 +1,81 @@
 package it.dariofabbri.accesscontrol.service.local.accesso;
 
-import it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore;
+import it.dariofabbri.accesscontrol.model.accesscontrol.Accesso;
 import it.dariofabbri.accesscontrol.service.local.Query;
+
+import java.util.Date;
 
 import org.hibernate.Session;
 
-public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA extends Query<Visitatore> {
+public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA extends Query<Accesso> {
 
-	private String nome;
-	private String cognome;
+	private Integer idStato;
+	private String destinatario;
+	private String autorizzatoDa;
+	private Date ingressoDa;
+	private Date ingressoA;
+	private Date uscitaDa;
+	private Date uscitaA;
 	
 	public QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA(Session session) {
 		
 		super(session);
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getIdStato() {
+		return idStato;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setIdStato(Integer idStato) {
+		this.idStato = idStato;
 	}
 
-	public String getCognome() {
-		return cognome;
+	public String getDestinatario() {
+		return destinatario;
 	}
 
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
+	}
+
+	public String getAutorizzatoDa() {
+		return autorizzatoDa;
+	}
+
+	public void setAutorizzatoDa(String autorizzatoDa) {
+		this.autorizzatoDa = autorizzatoDa;
+	}
+
+	public Date getIngressoDa() {
+		return ingressoDa;
+	}
+
+	public void setIngressoDa(Date ingressoDa) {
+		this.ingressoDa = ingressoDa;
+	}
+
+	public Date getIngressoA() {
+		return ingressoA;
+	}
+
+	public void setIngressoA(Date ingressoA) {
+		this.ingressoA = ingressoA;
+	}
+
+	public Date getUscitaDa() {
+		return uscitaDa;
+	}
+
+	public void setUscitaDa(Date uscitaDa) {
+		this.uscitaDa = uscitaDa;
+	}
+
+	public Date getUscitaA() {
+		return uscitaA;
+	}
+
+	public void setUscitaA(Date uscitaA) {
+		this.uscitaA = uscitaA;
 	}
 
 	@Override
@@ -42,14 +89,29 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 
 		String hql = 
 				"select count(*) " +
-				"from Visitatore vis " +
+				"from Accesso acc " +
 				"where 1 = 1 ";
+
+		if(idStato != null)
+			hql += "and acc.stato.id = :idStato ";
 		
-		if(nome != null)
-			hql += "and upper(vis.nome) like :nome ";
+		if(destinatario != null)
+			hql += "and upper(acc.destinatario) like :destinatario ";
 		
-		if(cognome != null)
-			hql += "and upper(vis.cognome) like :cognome ";
+		if(autorizzatoDa != null)
+			hql += "and upper(acc.autorizzatoDa) like :autorizzatoDa ";
+
+		if(ingressoDa != null)
+			hql += "and acc.ingresso >= :ingressoDa ";
+
+		if(ingressoA != null)
+			hql += "and acc.ingresso <= :ingressoA ";
+
+		if(uscitaDa != null)
+			hql += "and acc.uscita >= :uscitaDa ";
+
+		if(uscitaA != null)
+			hql += "and acc.uscita >= :uscitaA ";
 
 		return hql;
 	}
@@ -58,16 +120,31 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 	protected String getQueryHql() {
 
 		String hql = 
-				"from Visitatore vis " +
+				"from Accesso acc " +
 				"where 1 = 1 ";
-		
-		if(nome != null)
-			hql += "and upper(vis.nome) like :nome ";
-		
-		if(cognome != null)
-			hql += "and upper(vis.cognome) like :cognome ";
 
-		hql += "order by vis.cognome ";
+		if(idStato != null)
+			hql += "and acc.stato.id = :idStato ";
+		
+		if(destinatario != null)
+			hql += "and upper(acc.destinatario) like :destinatario ";
+		
+		if(autorizzatoDa != null)
+			hql += "and upper(acc.autorizzatoDa) like :autorizzatoDa ";
+
+		if(ingressoDa != null)
+			hql += "and acc.ingresso >= :ingressoDa ";
+
+		if(ingressoA != null)
+			hql += "and acc.ingresso <= :ingressoA ";
+
+		if(uscitaDa != null)
+			hql += "and acc.uscita >= :uscitaDa ";
+
+		if(uscitaA != null)
+			hql += "and acc.uscita >= :uscitaA ";
+
+		hql += "order by acc.id ";
 		
 		return hql;
 	}
@@ -79,11 +156,26 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 		for (int i = 0; i < named_params.length; ++i) {
 			String param = named_params[i];
 
-			if (param.equals("nome"))
-				q.setParameter("nome", "%" + nome.toUpperCase() + "%");
+			if (param.equals("idStato"))
+				q.setParameter("idStato", idStato);
 
-			else if (param.equals("cognome"))
-				q.setParameter("cognome", "%" + cognome.toUpperCase() + "%");
+			else if (param.equals("destinatario"))
+				q.setParameter("destinatario", "%" + destinatario.toUpperCase() + "%");
+
+			else if (param.equals("autorizzatoDa"))
+				q.setParameter("autorizzatoDa", "%" + autorizzatoDa.toUpperCase() + "%");
+
+			else if (param.equals("ingressoDa"))
+				q.setParameter("ingressoDa", ingressoDa);
+
+			else if (param.equals("ingressoA"))
+				q.setParameter("ingressoA", ingressoA);
+
+			else if (param.equals("uscitaDa"))
+				q.setParameter("uscitaDa", uscitaDa);
+
+			else if (param.equals("uscitaA"))
+				q.setParameter("uscitaA", uscitaA);
 		}
 	}
 }

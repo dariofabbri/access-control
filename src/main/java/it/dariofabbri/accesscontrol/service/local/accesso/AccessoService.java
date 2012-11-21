@@ -1,29 +1,46 @@
 package it.dariofabbri.accesscontrol.service.local.accesso;
 
 import it.dariofabbri.accesscontrol.model.accesscontrol.Accesso;
-import it.dariofabbri.accesscontrol.model.accesscontrol.TipoDocumento;
-import it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore;
 import it.dariofabbri.accesscontrol.service.local.QueryResult;
 import it.dariofabbri.accesscontrol.service.local.Service;
 
 import java.util.Date;
-import java.util.List;
 
 public interface AccessoService extends Service {
 
-	QueryResult<Visitatore> listVisitatori(
-			String nome,
-			String cognome,
+	QueryResult<Accesso> listAccessi(
+			Integer stato,
+			String destinatario,
+			String autorizzatoDa,
+			Date ingressoDa,
+			Date ingressoA,
+			Date uscitaDa,
+			Date uscitaA,
 			Integer offset,
 			Integer limit);
 
-	Visitatore retrieveVisitatoreById(Integer id);
+	Accesso retrieveAccessoById(Integer id);
 
-	void deleteVisitatoreById(Integer id);
+	void deleteAccessoById(Integer id);
 
-	Visitatore createVisitatore(String nome, String cognome, Date dataNascita, String luogoNascita, TipoDocumento tipoDocumento, Date ultimoAccesso);
+	Accesso createAccesso(
+			Integer idVisitatore, 
+			Integer idStato, 
+			Integer idOperatore, 
+			String destinatario, 
+			String autorizzatoDa, 
+			Date ingresso, 
+			Date uscita, 
+			String note);
 
-	Visitatore updateVisitatore(Integer id, String nome, String cognome, Date dataNascita, String luogoNascita, TipoDocumento tipoDocumento, Date ultimoAccesso);
-
-	List<Accesso> retrieveAccessiVisitatore(Integer id);
+	Accesso updateAccesso(
+			Integer id, 
+			Integer idVisitatore, 
+			Integer idStato, 
+			Integer idOperatore, 
+			String destinatario, 
+			String autorizzatoDa, 
+			Date ingresso, 
+			Date uscita, 
+			String note);
 }

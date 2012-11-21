@@ -6,6 +6,7 @@ import it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore;
 import it.dariofabbri.accesscontrol.service.local.AbstractService;
 import it.dariofabbri.accesscontrol.service.local.NotFoundException;
 import it.dariofabbri.accesscontrol.service.local.QueryResult;
+import it.dariofabbri.accesscontrol.service.local.ServiceException;
 
 import java.util.Date;
 import java.util.List;
@@ -45,7 +46,7 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 		
 		Visitatore visitatore = retrieveVisitatoreById(id);
 		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
+			String message = String.format("It has not been possible to retrieve specified entity: %d", id);
 			logger.info(message);
 			throw new NotFoundException(message);
 		}
@@ -59,8 +60,14 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 			String cognome, 
 			Date dataNascita, 
 			String luogoNascita, 
-			TipoDocumento tipoDocumento, 
+			Integer idTipoDocumento,
+			String numeroDocumento,
 			Date ultimoAccesso) {
+		
+		TipoDocumento tipoDocumento = (TipoDocumento)session.get(TipoDocumento.class, idTipoDocumento);
+		if(tipoDocumento == null) {
+			throw new ServiceException("Unable to look up tipo documento using passed id: " + idTipoDocumento); 
+		}
 		
 		Visitatore visitatore = new Visitatore();
 		
@@ -69,6 +76,7 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 		visitatore.setDataNascita(dataNascita);
 		visitatore.setLuogoNascita(luogoNascita);
 		visitatore.setTipoDocumento(tipoDocumento);
+		visitatore.setNumeroDocumento(numeroDocumento);
 		visitatore.setUltimoAccesso(ultimoAccesso);
 		
 		session.save(visitatore);
@@ -83,21 +91,28 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 			String cognome, 
 			Date dataNascita, 
 			String luogoNascita, 
-			TipoDocumento tipoDocumento, 
+			Integer idTipoDocumento, 
+			String numeroDocumento,
 			Date ultimoAccesso) {
 
 		Visitatore visitatore = retrieveVisitatoreById(id);
 		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
+			String message = String.format("It has not been possible to retrieve specified entity: %d", id);
 			logger.info(message);
 			throw new NotFoundException(message);
 		}
 		
+		TipoDocumento tipoDocumento = (TipoDocumento)session.get(TipoDocumento.class, idTipoDocumento);
+		if(tipoDocumento == null) {
+			throw new ServiceException("Unable to look up tipo documento using passed id: " + idTipoDocumento); 
+		}
+
 		visitatore.setNome(nome);
 		visitatore.setCognome(cognome);
 		visitatore.setDataNascita(dataNascita);
 		visitatore.setLuogoNascita(luogoNascita);
 		visitatore.setTipoDocumento(tipoDocumento);
+		visitatore.setNumeroDocumento(numeroDocumento);
 		visitatore.setUltimoAccesso(ultimoAccesso);
 		
 		session.update(visitatore);
@@ -111,7 +126,7 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 
 		Visitatore visitatore = retrieveVisitatoreById(id);
 		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
+			String message = String.format("It has not been possible to retrieve specified entity: %d", id);
 			logger.info(message);
 			throw new NotFoundException(message);
 		}

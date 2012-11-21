@@ -1,30 +1,39 @@
 package it.dariofabbri.accesscontrol.service.local.accesso;
 
 import it.dariofabbri.accesscontrol.model.accesscontrol.Accesso;
-import it.dariofabbri.accesscontrol.model.accesscontrol.TipoDocumento;
+import it.dariofabbri.accesscontrol.model.accesscontrol.StatoAccesso;
 import it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore;
+import it.dariofabbri.accesscontrol.model.security.User;
 import it.dariofabbri.accesscontrol.service.local.AbstractService;
 import it.dariofabbri.accesscontrol.service.local.NotFoundException;
 import it.dariofabbri.accesscontrol.service.local.QueryResult;
+import it.dariofabbri.accesscontrol.service.local.ServiceException;
 
 import java.util.Date;
-import java.util.List;
-
-import org.hibernate.Query;
 
 public class AccessoServiceImpl extends AbstractService implements AccessoService {
 
 	@Override
-	public QueryResult<Visitatore> listVisitatori(
-			String nome,
-			String cognome,
+	public QueryResult<Accesso> listAccessi(
+			Integer stato,
+			String destinatario,
+			String autorizzatoDa,
+			Date ingressoDa,
+			Date ingressoA,
+			Date uscitaDa,
+			Date uscitaA,
 			Integer offset,
 			Integer limit) {
 
 		QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA q = new QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA(session);
 
-		q.setNome(nome);
-		q.setCognome(cognome);
+		q.setIdStato(stato);
+		q.setDestinatario(destinatario);
+		q.setAutorizzatoDa(autorizzatoDa);
+		q.setIngressoDa(ingressoDa);
+		q.setIngressoA(ingressoA);
+		q.setUscitaDa(uscitaDa);
+		q.setUscitaA(uscitaA);
 		q.setOffset(offset);
 		q.setLimit(limit);
 		
@@ -32,99 +41,115 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 	}
 
 	@Override
-	public Visitatore retrieveVisitatoreById(Integer id) {
+	public Accesso retrieveAccessoById(Integer id) {
 
-		Visitatore visitatore = (Visitatore)session.get(Visitatore.class, id);
-		logger.debug("Visitatore found: " + visitatore);
+		Accesso accesso = (Accesso)session.get(Accesso.class, id);
+		logger.debug("Accesso found: " + accesso);
 		
-		return visitatore;
+		return accesso;
 	}
 
 	@Override
-	public void deleteVisitatoreById(Integer id) {
+	public void deleteAccessoById(Integer id) {
 		
-		Visitatore visitatore = retrieveVisitatoreById(id);
-		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
+		Accesso accesso = retrieveAccessoById(id);
+		if(accesso == null) {
+			String message = String.format("It has not been possible to retrieve specified entity: %d", id);
 			logger.info(message);
 			throw new NotFoundException(message);
 		}
 		
-		session.delete(visitatore);
+		session.delete(accesso);
 	}
 
 	@Override
-	public Visitatore createVisitatore(
-			String nome, 
-			String cognome, 
-			Date dataNascita, 
-			String luogoNascita, 
-			TipoDocumento tipoDocumento, 
-			Date ultimoAccesso) {
+	public Accesso createAccesso(
+			Integer idVisitatore, 
+			Integer idStato, 
+			Integer idOperatore, 
+			String destinatario, 
+			String autorizzatoDa, 
+			Date ingresso, 
+			Date uscita, 
+			String note) {
 		
-		Visitatore visitatore = new Visitatore();
+		Visitatore visitatore = (Visitatore)session.get(Visitatore.class, idVisitatore);
+		if(visitatore == null) {
+			throw new ServiceException("Unable to look up visitatore using passed id: " + idVisitatore); 
+		}
 		
-		visitatore.setNome(nome);
-		visitatore.setCognome(cognome);
-		visitatore.setDataNascita(dataNascita);
-		visitatore.setLuogoNascita(luogoNascita);
-		visitatore.setTipoDocumento(tipoDocumento);
-		visitatore.setUltimoAccesso(ultimoAccesso);
+		StatoAccesso stato = (StatoAccesso)session.get(StatoAccesso.class, idStato);
+		if(stato == null) {
+			throw new ServiceException("Unable to look up stato accesso using passed id: " + idStato); 
+		}
 		
-		session.save(visitatore);
+		User operatore = (User)session.get(User.class, idOperatore);
+		if(operatore == null) {
+			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
+		}
+
+		Accesso accesso = new Accesso();
 		
-		return visitatore;
+		accesso.setVisitatore(visitatore);
+		accesso.setStato(stato);
+		accesso.setOperatore(operatore);
+		accesso.setDestinatario(destinatario);
+		accesso.setAutorizzatoDa(autorizzatoDa);
+		accesso.setIngresso(ingresso);
+		accesso.setUscita(uscita);
+		accesso.setNote(note);
+		
+		session.save(accesso);
+		
+		return accesso;
 	}
 
+	
 	@Override
-	public Visitatore updateVisitatore(
+	public Accesso updateAccesso(
 			Integer id,
-			String nome, 
-			String cognome, 
-			Date dataNascita, 
-			String luogoNascita, 
-			TipoDocumento tipoDocumento, 
-			Date ultimoAccesso) {
-
-		Visitatore visitatore = retrieveVisitatoreById(id);
-		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
+			Integer idVisitatore, 
+			Integer idStato, 
+			Integer idOperatore, 
+			String destinatario, 
+			String autorizzatoDa, 
+			Date ingresso, 
+			Date uscita, 
+			String note) {
+		
+		Accesso accesso = retrieveAccessoById(id);
+		if(accesso == null) {
+			String message = String.format("It has not been possible to retrieve specified entity: %d", id);
 			logger.info(message);
 			throw new NotFoundException(message);
 		}
 		
-		visitatore.setNome(nome);
-		visitatore.setCognome(cognome);
-		visitatore.setDataNascita(dataNascita);
-		visitatore.setLuogoNascita(luogoNascita);
-		visitatore.setTipoDocumento(tipoDocumento);
-		visitatore.setUltimoAccesso(ultimoAccesso);
-		
-		session.update(visitatore);
-		
-		return visitatore;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Accesso> retrieveAccessiVisitatore(Integer id) {
-
-		Visitatore visitatore = retrieveVisitatoreById(id);
+		Visitatore visitatore = (Visitatore)session.get(Visitatore.class, idVisitatore);
 		if(visitatore == null) {
-			String message = String.format("It has not been possible to retrieve specified visitatore: %d", id);
-			logger.info(message);
-			throw new NotFoundException(message);
+			throw new ServiceException("Unable to look up visitatore using passed id: " + idVisitatore); 
+		}
+		
+		StatoAccesso stato = (StatoAccesso)session.get(StatoAccesso.class, idStato);
+		if(stato == null) {
+			throw new ServiceException("Unable to look up stato accesso using passed id: " + idStato); 
+		}
+		
+		User operatore = (User)session.get(User.class, idOperatore);
+		if(operatore == null) {
+			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
 		}
 
-		String hql = 
-				"select distinct acc from Accesso acc " +
-				"inner join acc.visitatore vis " +
-				"where vis.id = :id";
-		Query query = session.createQuery(hql);
-		query.setParameter("id", id);
-		List<Accesso> list = (List<Accesso>)query.list();
-		logger.debug("Accessi found: " + list);
+		accesso.setVisitatore(visitatore);
+		accesso.setStato(stato);
+		accesso.setOperatore(operatore);
+		accesso.setDestinatario(destinatario);
+		accesso.setAutorizzatoDa(autorizzatoDa);
+		accesso.setIngresso(ingresso);
+		accesso.setUscita(uscita);
+		accesso.setNote(note);
 		
-		return list;
+		session.update(accesso);
+		
+		return accesso;
 	}
 }

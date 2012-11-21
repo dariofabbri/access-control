@@ -1,4 +1,4 @@
-CREATE TABLE acc_tipo_documento
+﻿CREATE TABLE acc_tipo_documento
 (
 	id INTEGER NOT NULL PRIMARY KEY,
 	descrizione VARCHAR(255) NOT NULL
@@ -26,7 +26,7 @@ CREATE TABLE acc_accesso
 (
 	id SERIAL NOT NULL PRIMARY KEY,
 	id_visitatore INTEGER NOT NULL REFERENCES acc_visitatore(id),
-	id_stato INTEGER NOT NULL REFERENCES acc_stato_permesso(id),
+	id_stato INTEGER NOT NULL REFERENCES acc_stato_accesso(id),
 	id_user INTEGER NOT NULL REFERENCES sec_user(id),
 	destinatario VARCHAR(255),
 	autorizzato_da VARCHAR(255),

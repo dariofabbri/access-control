@@ -1,5 +1,7 @@
 package it.dariofabbri.accesscontrol.service.local;
 
+import it.dariofabbri.accesscontrol.service.local.accesso.AccessoService;
+import it.dariofabbri.accesscontrol.service.local.accesso.AccessoServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.contact.ContactService;
 import it.dariofabbri.accesscontrol.service.local.contact.ContactServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.lut.LUTService;
@@ -12,6 +14,8 @@ import it.dariofabbri.accesscontrol.service.local.security.SecurityService;
 import it.dariofabbri.accesscontrol.service.local.security.SecurityServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.user.UserService;
 import it.dariofabbri.accesscontrol.service.local.user.UserServiceImpl;
+import it.dariofabbri.accesscontrol.service.local.visitatore.VisitatoreService;
+import it.dariofabbri.accesscontrol.service.local.visitatore.VisitatoreServiceImpl;
 
 public class ServiceFactory {
 	
@@ -48,6 +52,18 @@ public class ServiceFactory {
 	public static LUTService createLUTService() {
 		
 		LUTService service = SessionDecorator.<LUTService>createProxy(new LUTServiceImpl(), LUTService.class);
+		return service;
+	}
+	
+	public static AccessoService createAccessoService() {
+		
+		AccessoService service = SessionDecorator.<AccessoService>createProxy(new AccessoServiceImpl(), AccessoService.class);
+		return service;
+	}
+	
+	public static VisitatoreService createVisitatoreService() {
+		
+		VisitatoreService service = SessionDecorator.<VisitatoreService>createProxy(new VisitatoreServiceImpl(), VisitatoreService.class);
 		return service;
 	}
 }
