@@ -43,6 +43,15 @@ define([
 				errors.numeroDocumento = "Il campo è obbligatorio.";
 			}
 			
+			if(!_.isEmpty(changed.dataNascita)) {
+				
+				var m = moment(changed.dataNascita, "D/M/YYYY");
+				alert(m.format("DD/MM/YYYY"));
+				if(!moment(changed.dataNascita, "D/M/YYYY").isValid()) {
+					errors.dataNascita = "La data immessa non è valida.";
+				}
+			}
+			
 			if(!_.isEmpty(errors)) {
 				return errors;
 			}

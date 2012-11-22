@@ -8,7 +8,8 @@ require.config({
 		"backbone": "backbone/backbone",
 		"text": "require/text",
 		"bootstrap": "bootstrap/bootstrap",
-		"datejs": "datejs/date-it-IT"
+		"momentjs": "momentjs/moment",
+		"momentjs-it": "momentjs/it"
 	},
 	
 	shim: {
@@ -21,6 +22,9 @@ require.config({
 		},
 		bootstrap: {
 			deps: ["jquery"]
+		},
+		momentjs: {
+			deps: ["momentjs-it"]
 		}
 	}
 });
@@ -43,11 +47,11 @@ require([
 	"access-control/models/logininfo",
 	"access-control/views/common/modaldialog",
 	"bootstrap",
-	"datejs"], 
+	"momentjs"], 
 	function(
 			$, 
 			_, 
-			Backbone, 
+			Backbone,
 			viewManager, 
 			MainRouter, 
 			ContactsRouter,
@@ -212,6 +216,7 @@ require([
 			};
 		})();
 
+		
 		application.grantActions = [
 			"permissions:list",
 			"permissions:get",
