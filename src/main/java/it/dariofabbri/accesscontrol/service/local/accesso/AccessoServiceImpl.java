@@ -11,6 +11,8 @@ import it.dariofabbri.accesscontrol.service.local.ServiceException;
 
 import java.util.Date;
 
+import org.hibernate.Query;
+
 public class AccessoServiceImpl extends AbstractService implements AccessoService {
 
 	@Override
@@ -43,7 +45,18 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 	@Override
 	public Accesso retrieveAccessoById(Integer id) {
 
-		Accesso accesso = (Accesso)session.get(Accesso.class, id);
+		String hql = 
+				"from Accesso acc " +
+				"left join fetch acc.visitatore vis " +
+				"left join fetch acc.stato sta " +
+				"left join fetch acc.operatore ope " +
+				"where acc.id = :id ";
+
+		
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		
+		Accesso accesso = (Accesso)query.uniqueResult();
 		logger.debug("Accesso found: " + accesso);
 		
 		return accesso;
@@ -88,8 +101,11 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
 		}
 
-		Accesso accesso = new Accesso();
+		if(ingresso == null) {
+			ingresso = new Date();
+		}
 		
+		Accesso accesso = new Accesso();
 		accesso.setVisitatore(visitatore);
 		accesso.setStato(stato);
 		accesso.setOperatore(operatore);
@@ -98,8 +114,10 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setIngresso(ingresso);
 		accesso.setUscita(uscita);
 		accesso.setNote(note);
-		
 		session.save(accesso);
+
+		visitatore.setUltimoAccesso(ingresso);
+		session.update(visitatore);
 		
 		return accesso;
 	}

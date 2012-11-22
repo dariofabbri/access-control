@@ -6,7 +6,6 @@ import it.dariofabbri.accesscontrol.service.local.NotFoundException;
 import it.dariofabbri.accesscontrol.service.local.QueryResult;
 import it.dariofabbri.accesscontrol.service.local.ServiceFactory;
 import it.dariofabbri.accesscontrol.service.local.visitatore.VisitatoreService;
-import it.dariofabbri.accesscontrol.service.rest.dto.PermissionDTO;
 import it.dariofabbri.accesscontrol.service.rest.dto.VisitatoreDTO;
 import it.dariofabbri.accesscontrol.service.rest.dto.VisitatoriDTO;
 
@@ -31,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/visitatori")
 @Produces("application/json")
-public class VisitatoreResource {
+public class VisitatoreResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(VisitatoreResource.class);
 	
@@ -137,7 +136,7 @@ public class VisitatoreResource {
 		}
 		
 		Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
-		PermissionDTO dto = mapper.map(entity, PermissionDTO.class);
+		VisitatoreDTO dto = mapper.map(entity, VisitatoreDTO.class);
 		return Response.status(Status.CREATED).entity(dto).build();
 	}
 
@@ -146,7 +145,7 @@ public class VisitatoreResource {
 	@Path("/{id}")
 	public Response updateVisitatore(@PathParam("id") Integer id, VisitatoreDTO visitatore) {
 		
-		logger.debug("updatePermission called!");
+		logger.debug("updateVisitatore called!");
 		
 		Subject currentUser = SecurityUtils.getSubject();
 		if(!currentUser.isPermitted("visitatori:update")) {

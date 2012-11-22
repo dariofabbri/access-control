@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/reports")
 @Produces("application/pdf")
-public class ReportResource {
+public class ReportResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(ReportResource.class);
 	

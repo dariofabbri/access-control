@@ -7,7 +7,8 @@ require.config({
 		"underscore": "underscore/underscore",
 		"backbone": "backbone/backbone",
 		"text": "require/text",
-		"bootstrap": "bootstrap/bootstrap"
+		"bootstrap": "bootstrap/bootstrap",
+		"datejs": "datejs/date-it-IT"
 	},
 	
 	shim: {
@@ -38,9 +39,11 @@ require([
 	"access-control/routers/users",
 	"access-control/routers/roles",
 	"access-control/routers/permissions",
+	"access-control/routers/visitatori",
 	"access-control/models/logininfo",
 	"access-control/views/common/modaldialog",
-	"bootstrap"], 
+	"bootstrap",
+	"datejs"], 
 	function(
 			$, 
 			_, 
@@ -52,6 +55,7 @@ require([
 			UsersRouter,
 			RolesRouter,
 			PermissionsRouter,
+			VisitatoriRouter,
 			LoginInfo,
 			ModalDialogView) {
 	
@@ -240,6 +244,7 @@ require([
 		application.routers.push(new UsersRouter());
 		application.routers.push(new RolesRouter());
 		application.routers.push(new PermissionsRouter());
+		application.routers.push(new VisitatoriRouter());
 		
 		application.buildNewLoginInfo = function() {
 

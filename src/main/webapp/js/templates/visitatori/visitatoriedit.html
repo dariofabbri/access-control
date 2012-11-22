@@ -1,0 +1,69 @@
+<form class="well form-horizontal">
+	<legend>Dettaglio del visitatore</legend>
+	<div class="control-group">
+		<label class="control-label" for="nome">Nome: </label>
+		<div class="controls">
+			<input 
+				id="nome" 
+				type="text" 
+				placeholder="Inserisci il nome"
+				value="<%=nome%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="cognome">Cognome: </label>
+		<div class="controls">
+			<input 
+				id="cognome" 
+				type="text" 
+				placeholder="Inserisci il cognome"
+				value="<%=cognome%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="tipoDocumento">Tipo documento: </label>
+		<div class="controls">
+			<select	id="tipoDocumento" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="numeroDocumento">Numero documento: </label>
+		<div class="controls">
+			<input 
+				id="numeroDocumento" 
+				type="text" 
+				placeholder="Inserisci il numero del documento"
+				value="<%=numeroDocumento%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="dataNascita">Data nascita: </label>
+		<div class="controls">
+			<input 
+				id="dataNascita" 
+				type="text" 
+				placeholder="Inserisci la data di nascita"
+				value="<%=dataNascita%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="luogoNascita">Luogo nascita: </label>
+		<div class="controls">
+			<input 
+				id="luogoNascita" 
+				type="text" 
+				placeholder="Inserisci il luogo di nascita"
+				value="<%=luogoNascita%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="form-actions">
+		<a id="cancel" class="btn">Annulla</a>
+		<a id="save" class="btn btn-primary">Salva</a>
+	</div>
+</form>

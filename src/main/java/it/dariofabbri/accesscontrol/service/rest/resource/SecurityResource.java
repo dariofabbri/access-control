@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/security")
 @Produces("application/json")
-public class SecurityResource {
+public class SecurityResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(SecurityResource.class);
 	

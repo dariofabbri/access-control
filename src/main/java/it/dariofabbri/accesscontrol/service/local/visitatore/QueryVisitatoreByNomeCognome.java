@@ -43,6 +43,7 @@ public class QueryVisitatoreByNomeCognome extends Query<Visitatore> {
 		String hql = 
 				"select count(*) " +
 				"from Visitatore vis " +
+				"left join vis.tipoDocumento tdo " +
 				"where 1 = 1 ";
 		
 		if(nome != null)
@@ -59,6 +60,7 @@ public class QueryVisitatoreByNomeCognome extends Query<Visitatore> {
 
 		String hql = 
 				"from Visitatore vis " +
+				"left join fetch vis.tipoDocumento tdo " +
 				"where 1 = 1 ";
 		
 		if(nome != null)

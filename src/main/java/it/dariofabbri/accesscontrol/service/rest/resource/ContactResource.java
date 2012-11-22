@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/contacts")
 @Produces("application/json")
-public class ContactResource {
+public class ContactResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(ContactResource.class);
 	

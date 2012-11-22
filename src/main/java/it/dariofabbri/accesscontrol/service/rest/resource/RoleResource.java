@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/roles")
 @Produces("application/json")
-public class RoleResource {
+public class RoleResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(RoleResource.class);
 	

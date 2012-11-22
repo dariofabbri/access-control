@@ -3,6 +3,44 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
-          
+
+	<mapping>
+		<class-a>it.dariofabbri.accesscontrol.model.accesscontrol.Accesso</class-a>
+		<class-b>it.dariofabbri.accesscontrol.service.rest.dto.AccessoDTO</class-b>
+		<field>
+			<a>visitatore.id</a>
+			<b>idVisitatore</b>
+		</field>
+		<field>
+			<a>visitatore.nome</a>
+			<b>nomeVisitatore</b>
+		</field>
+		<field>
+			<a>visitatore.cognome</a>
+			<b>cognomeVisitatore</b>
+		</field>
+		<field>
+			<a>stato.id</a>
+			<b>idStato</b>
+		</field>
+		<field>
+			<a>stato.descrizione</a>
+			<b>descrizioneStato</b>
+		</field>
+		<field>
+			<a>operatore.id</a>
+			<b>idOperatore</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore</class-a>
+		<class-b>it.dariofabbri.accesscontrol.service.rest.dto.VisitatoreDTO</class-b>
+		<field>
+			<a>tipoDocumento.id</a>
+			<b>idTipoDocumento</b>
+		</field>
+	</mapping>
+
 </mappings>
         

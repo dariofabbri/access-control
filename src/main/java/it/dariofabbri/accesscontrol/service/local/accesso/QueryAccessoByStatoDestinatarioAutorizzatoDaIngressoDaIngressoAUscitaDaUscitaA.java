@@ -90,6 +90,9 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 		String hql = 
 				"select count(*) " +
 				"from Accesso acc " +
+				"left join acc.visitatore vis " +
+				"left join acc.stato sta " +
+				"left join acc.operatore ope " +
 				"where 1 = 1 ";
 
 		if(idStato != null)
@@ -121,6 +124,9 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 
 		String hql = 
 				"from Accesso acc " +
+				"left join fetch acc.visitatore vis " +
+				"left join fetch acc.stato sta " +
+				"left join fetch acc.operatore ope " +
 				"where 1 = 1 ";
 
 		if(idStato != null)

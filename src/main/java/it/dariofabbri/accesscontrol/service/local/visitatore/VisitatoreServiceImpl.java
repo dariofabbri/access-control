@@ -35,7 +35,15 @@ public class VisitatoreServiceImpl extends AbstractService implements Visitatore
 	@Override
 	public Visitatore retrieveVisitatoreById(Integer id) {
 
-		Visitatore visitatore = (Visitatore)session.get(Visitatore.class, id);
+		String hql = 
+				"from Visitatore vis " +
+				"left join fetch vis.tipoDocumento tdo " +
+				"where vis.id = :id ";
+		
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		
+		Visitatore visitatore = (Visitatore)query.uniqueResult();
 		logger.debug("Visitatore found: " + visitatore);
 		
 		return visitatore;

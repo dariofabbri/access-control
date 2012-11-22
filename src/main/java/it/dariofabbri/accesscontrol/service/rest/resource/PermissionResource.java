@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 @Path("/permissions")
 @Produces("application/json")
-public class PermissionResource {
+public class PermissionResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(PermissionResource.class);
 	
