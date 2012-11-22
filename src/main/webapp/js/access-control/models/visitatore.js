@@ -20,7 +20,57 @@ define([
 
 		parse: function(response) {
 			
-			return response;
+			var adjusted = _.clone(response);
+
+			if(adjusted) {
+				adjusted.dataNascita = this.makeStringDate(response.dataNascita);
+			}
+			
+			return adjusted;
+		},
+		
+		toJSON: function(options) {
+			
+			var json = _.clone(this.attributes);
+			
+			json.dataNascita = this.makeIsoDate(this.get("dataNascita"));
+			return json;
+		},
+		
+		toJSONView: function(options) {
+			
+			return _.clone(this.attributes);
+		},
+		
+		checkDate: function(dateString) {
+			
+			if(!dateString)
+				return false;
+			
+			var re = /\d{1,2}\/\d{1,2}\/\d{4}/;
+			if(!re.test(dateString))
+				return false;
+			
+			return moment(dateString, "D/M/YYYY").isValid();
+		},
+		
+		makeStringDate: function(isoDate) {
+			
+			if(!isoDate) {
+				return null;
+			}
+			
+			var m = moment(isoDate);
+			return m.format("DD/MM/YYYY");
+		},
+		
+		makeIsoDate: function(dateString) {
+			
+			if(!this.checkDate(dateString)) {
+				return null;
+			}
+			
+			return moment.utc(dateString, "D/M/YYYY").format();
 		},
 		
 		validate: function(changed) {
@@ -45,9 +95,7 @@ define([
 			
 			if(!_.isEmpty(changed.dataNascita)) {
 				
-				var m = moment(changed.dataNascita, "D/M/YYYY");
-				alert(m.format("DD/MM/YYYY"));
-				if(!moment(changed.dataNascita, "D/M/YYYY").isValid()) {
+				if(!this.checkDate(changed.dataNascita)) {
 					errors.dataNascita = "La data immessa non è valida.";
 				}
 			}

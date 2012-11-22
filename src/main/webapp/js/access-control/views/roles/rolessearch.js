@@ -38,7 +38,6 @@ define([
 			var rolename = $("#rolename").val();
 			var description = $("#description").val();
 
-			var that = this;
 			this.collection.fetchPage(1, {
 				rolename: rolename,
 				description: description

@@ -37,7 +37,6 @@ define([
 						
 			var permissionString = $("#permissionstring").val();
 
-			var that = this;
 			this.collection.fetchPage(1, {
 				permissionString: permissionString
 			});

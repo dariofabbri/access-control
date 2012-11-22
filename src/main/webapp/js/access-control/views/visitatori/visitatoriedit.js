@@ -17,7 +17,7 @@ define([
 		
 		render: function() {
 
-			this.$el.html(_.template(editTemplate, this.model.toJSON()));
+			this.$el.html(_.template(editTemplate, this.model.toJSONView()));
 			
 			// Populate drop down lists.
 			//
@@ -68,13 +68,9 @@ define([
 			});
 			
 			if(result) {
-				var that = this;
 				this.model.save({}, {
 					success: function() {
 						Backbone.history.navigate("VisitatoriList", true);		
-					},
-					error: function() {
-						alert(that.model);
 					}
 				});
 			}

@@ -40,8 +40,6 @@ define([
 			var lastName = $("#lastName").val();
 			var description = $("#description").val();
 			
-
-			var that = this;
 			this.collection.fetchPage(1, {
 				username: username,
 				firstName: firstName,

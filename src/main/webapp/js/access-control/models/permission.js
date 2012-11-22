@@ -18,7 +18,7 @@ define([
 			
 			if(!_.isUndefined(changed.permissionString)) {
 				if(_.isEmpty(changed.permissionString)) {
-					errors.permissionString = "Il campo Ã¨ obbligatorio.";
+					errors.permissionString = "Il campo è obbligatorio.";
 				}
 			}
 		}

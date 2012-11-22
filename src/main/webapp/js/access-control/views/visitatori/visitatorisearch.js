@@ -38,7 +38,6 @@ define([
 			var nome = $("#nome").val();
 			var cognome = $("#cognome").val();
 
-			var that = this;
 			this.collection.fetchPage(1, {
 				nome: nome,
 				cognome: cognome

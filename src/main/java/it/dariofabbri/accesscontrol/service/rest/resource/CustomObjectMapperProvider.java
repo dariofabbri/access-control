@@ -1,4 +1,4 @@
-package it.dariofabbri.accesscontrol.service.rest;
+package it.dariofabbri.accesscontrol.service.rest.resource;
 
 import java.text.SimpleDateFormat;
 
