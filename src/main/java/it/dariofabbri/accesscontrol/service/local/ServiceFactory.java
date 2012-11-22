@@ -8,6 +8,7 @@ import it.dariofabbri.accesscontrol.service.local.lut.LUTService;
 import it.dariofabbri.accesscontrol.service.local.lut.LUTServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionService;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionServiceImpl;
+import it.dariofabbri.accesscontrol.service.local.report.ReportService;
 import it.dariofabbri.accesscontrol.service.local.role.RoleService;
 import it.dariofabbri.accesscontrol.service.local.role.RoleServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.security.SecurityService;
@@ -64,6 +65,12 @@ public class ServiceFactory {
 	public static VisitatoreService createVisitatoreService() {
 		
 		VisitatoreService service = SessionDecorator.<VisitatoreService>createProxy(new VisitatoreServiceImpl(), VisitatoreService.class);
+		return service;
+	}
+	
+	public static ReportService createReportService() {
+		
+		ReportService service = new ReportService();
 		return service;
 	}
 }

@@ -91,6 +91,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			throw new ServiceException("Unable to look up visitatore using passed id: " + idVisitatore); 
 		}
 		
+		idStato = idStato == null ? StatoAccesso.IN_CORSO : idStato;
 		StatoAccesso stato = (StatoAccesso)session.get(StatoAccesso.class, idStato);
 		if(stato == null) {
 			throw new ServiceException("Unable to look up stato accesso using passed id: " + idStato); 

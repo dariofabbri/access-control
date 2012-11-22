@@ -6,6 +6,7 @@ import java.util.List;
 public class SecurityDTO {
 
 	private Boolean loggedOn;
+	private Integer idUser;
 	private String username;
 	private String password;
 	private String name;
@@ -21,6 +22,14 @@ public class SecurityDTO {
 
 	public void setLoggedOn(Boolean loggedOn) {
 		this.loggedOn = loggedOn;
+	}
+
+	public Integer getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getUsername() {

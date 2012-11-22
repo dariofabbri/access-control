@@ -8,6 +8,7 @@ define([
 		defaults: {
 			loggedOn: false,
 			username: null,
+			idUser: null,
 			name: null,
 			surname: null,
 			logonTs: null,

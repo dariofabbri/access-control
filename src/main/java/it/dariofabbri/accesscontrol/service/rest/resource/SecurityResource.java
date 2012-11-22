@@ -63,6 +63,7 @@ public class SecurityResource extends BaseResource {
 			if(principal instanceof User) {
 				
 				User user = (User)principal;
+				dto.setIdUser(user.getId());
 				dto.setName(user.getFirstName());
 				dto.setSurname(user.getLastName());
 				break;

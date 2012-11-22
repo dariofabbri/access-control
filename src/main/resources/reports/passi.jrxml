@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Passi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78b2bcc-bc3e-4443-a6d8-75a369c0cd89">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="10"/>
+	<parameter name="id_accesso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+  acc.id as id_accesso,
+  acc.destinatario,
+  acc.autorizzato_da,
+  acc.ingresso,
+  acc.uscita,
+  acc.note,
+  sta.id as id_stato,
+  sta.descrizione as descrizione_stato,
+  use.id as id_operatore,
+  use.username as username_operatore,
+  use.firstname as nome_operatore,
+  use.lastname as cognome_operatore,
+  vis.id as id_visitatore,
+  vis.nome as nome_visitatore,
+  vis.cognome as cognome_visitatore,
+  vis.numero_documento as numero_documento,
+  tdo.id as id_tipo_documento,
+  tdo.descrizione as descrizione_tipo_documento
+  from acc_accesso acc
+  left join acc_stato_accesso sta on acc.id_stato = sta.id
+  left join sec_user use on acc.id_user = use.id
+  left join acc_visitatore vis on acc.id_visitatore = vis.id
+  left join acc_tipo_documento tdo on vis.id_tipo_documento = tdo.id
+  where acc.id = $P{id_accesso}]]>
+	</queryString>
+	<field name="id_accesso" class="java.lang.Integer"/>
+	<field name="destinatario" class="java.lang.String"/>
+	<field name="autorizzato_da" class="java.lang.String"/>
+	<field name="ingresso" class="java.sql.Timestamp"/>
+	<field name="uscita" class="java.sql.Timestamp"/>
+	<field name="note" class="java.lang.String"/>
+	<field name="id_stato" class="java.lang.Integer"/>
+	<field name="descrizione_stato" class="java.lang.String"/>
+	<field name="id_operatore" class="java.lang.Integer"/>
+	<field name="username_operatore" class="java.lang.String"/>
+	<field name="nome_operatore" class="java.lang.String"/>
+	<field name="cognome_operatore" class="java.lang.String"/>
+	<field name="id_visitatore" class="java.lang.Integer"/>
+	<field name="nome_visitatore" class="java.lang.String"/>
+	<field name="cognome_visitatore" class="java.lang.String"/>
+	<field name="numero_documento" class="java.lang.String"/>
+	<field name="id_tipo_documento" class="java.lang.Integer"/>
+	<field name="descrizione_tipo_documento" class="java.lang.String"/>
+	<title>
+		<band height="150" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="0" width="555" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Centro Agroalimentare Roma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="21" width="555" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[La città dei commerci]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="230" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="2709ced9-94e7-485a-9d58-46e2d433ce44" x="0" y="0" width="555" height="215"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="5238f08f-5fba-4f21-b621-bdf2b5a4f5e3" x="227" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[PASSI DI ACCESSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="13" y="43" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="113" y="43" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_visitatore}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="13" y="63" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[COGNOME]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="113" y="63" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cognome_visitatore}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="380" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="0" width="555" height="380"/>
+				<box topPadding="10" leftPadding="10" bottomPadding="10" rightPadding="10">
+					<pen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

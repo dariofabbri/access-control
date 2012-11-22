@@ -2,9 +2,14 @@ package it.dariofabbri.accesscontrol.service.rest.resource;
 
 
 import it.dariofabbri.accesscontrol.service.local.report.BasicReportService;
+import it.dariofabbri.accesscontrol.service.local.report.ReportService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -33,6 +38,28 @@ public class ReportResource extends BaseResource {
 
 		BasicReportService brs = new BasicReportService();
 		byte[] report = brs.generateReport("reports/basictest.jasper");
+		
+		return Response.ok().entity(report).build();
+	}
+	
+	@GET
+	@Path("/passi/{id}")
+	public Response getPassiReport(@PathParam("id") Integer id) {
+
+		logger.debug("getPassiReport called!");
+		
+		Subject currentUser = SecurityUtils.getSubject();
+		if(!currentUser.isPermitted("reports:passi")) {
+			return Response.status(Status.UNAUTHORIZED).entity("Operation not permitted.").build();
+		}
+
+		// Prepare parameter map.
+		//
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("id_accesso", id);
+		
+		ReportService rs = new ReportService();
+		byte[] report = rs.generateReport("reports/passi.jasper", parameters);
 		
 		return Response.ok().entity(report).build();
 	}

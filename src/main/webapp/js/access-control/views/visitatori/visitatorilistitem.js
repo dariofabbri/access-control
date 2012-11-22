@@ -11,12 +11,13 @@ define([
 		
 		events: {
 			"click a#remove": "removeItem",
-			"click a#edit": "editItem"
+			"click a#edit": "editItem",
+			"click a#newAccesso": "newAccesso"
 		},
 		
 		render: function() {
 			
-			this.$el.append(_.template(itemTemplate, this.model.toJSON()));
+			this.$el.append(_.template(itemTemplate, this.model.toJSONView()));
 			return this;
 		},
 		
@@ -37,6 +38,10 @@ define([
 		
 		editItem: function() {
 			Backbone.history.navigate("VisitatoriEdit/" + this.model.id, true);
+		},
+		
+		newAccesso: function() {
+			Backbone.history.navigate("VisitatoriNewAccesso/" + this.model.id, true);
 		},
 		
 		cancelRemoveItem: function() {

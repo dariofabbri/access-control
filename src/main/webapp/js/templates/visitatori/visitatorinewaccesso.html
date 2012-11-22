@@ -1,0 +1,38 @@
+<form class="well form-horizontal">
+	<legend>Creazione nuovo accesso</legend>
+	<div class="control-group">
+		<label class="control-label" for="destinatario">Destinatario: </label>
+		<div class="controls">
+			<input 
+				id="destinatario" 
+				type="text" 
+				placeholder="Inserisci il destinatario"
+				value="<%=destinatario%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="autorizzatoDa">Autorizzato da: </label>
+		<div class="controls">
+			<input 
+				id="autorizzatoDa" 
+				type="text" 
+				placeholder="Inserisci da chi è autorizzato"
+				value="<%=autorizzatoDa%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="note">Annotazioni: </label>
+		<div class="controls">
+			<textarea 
+				id="note" 
+				placeholder="Inserisci eventuali annotazioni"><%=note%></textarea>
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="form-actions">
+		<a id="cancel" class="btn">Annulla</a>
+		<a id="save" class="btn btn-primary">Salva</a>
+	</div>
+</form>

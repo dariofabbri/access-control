@@ -3,13 +3,17 @@ define([
 	"backbone",
 	"access-control/views/visitatori/visitatorilist",
 	"access-control/views/visitatori/visitatoriedit",
-	"access-control/collections/visitatori"], 
+	"access-control/views/visitatori/visitatorinewaccesso",
+	"access-control/collections/visitatori",
+	"access-control/models/accesso"], 
 	function(
 			_, 
 			Backbone, 
 			VisitatoriListView, 
 			VisitatoriEditView,
-			Visitatori) {
+			VisitatoriNewAccessoView,
+			Visitatori,
+			Accesso) {
 
 	var visitatori = Backbone.Router.extend({
 		
@@ -19,7 +23,8 @@ define([
 			"VisitatoriList": "list",
 			"VisitatoriList/page/:page": "page",
 			"VisitatoriNew": "create",
-			"VisitatoriEdit/:id": "edit"
+			"VisitatoriEdit/:id": "edit",
+			"VisitatoriNewAccesso/:id": "newAccesso"
 		},
 		
 		list: function() {
@@ -52,6 +57,20 @@ define([
 			model.fetch();
 
 			var view = new VisitatoriEditView({
+				model: model
+			});
+			
+			this.show(view, "#container");
+		},
+		
+		newAccesso: function(id) {
+			
+			var model = new Accesso({
+				idVisitatore: id,
+				idOperatore: application.loginInfo.get("idUser")
+			});
+
+			var view = new VisitatoriNewAccessoView({
 				model: model
 			});
 			

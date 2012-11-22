@@ -46,6 +46,12 @@ define([
 			this.model.on("error", this.showErrors, this);
 			this.model.on("change", this.render, this);
 		},
+
+		onClose: function() {
+			
+			this.model.off("error", this.showErrors);
+			this.model.off("change", this.render, this);
+		},
 		
 		autofocus: "#nome",
 

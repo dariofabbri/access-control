@@ -11,6 +11,9 @@ define([
 		
 		queryArguments: {},
 		
+		// TODO: check this one, maybe gets overridden and the event binding
+		//       stays there forever...
+		//
 		initialize: function() {
 			
 			var that = this;
