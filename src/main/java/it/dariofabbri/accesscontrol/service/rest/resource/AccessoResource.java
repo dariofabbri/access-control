@@ -8,6 +8,7 @@ import it.dariofabbri.accesscontrol.service.local.ServiceFactory;
 import it.dariofabbri.accesscontrol.service.local.accesso.AccessoService;
 import it.dariofabbri.accesscontrol.service.rest.dto.AccessiDTO;
 import it.dariofabbri.accesscontrol.service.rest.dto.AccessoDTO;
+import it.dariofabbri.accesscontrol.service.rest.param.DateParam;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -39,10 +40,12 @@ public class AccessoResource extends BaseResource {
 			@QueryParam("idStato") Integer idStato,
 			@QueryParam("destinatario") String destinatario,
 			@QueryParam("autorizzatoDa") String autorizzatoDa,
-			@QueryParam("ingressoDa") Long ingressoDa,
-			@QueryParam("ingressoA") Long ingressoA,
-			@QueryParam("uscitaDa") Long uscitaDa,
-			@QueryParam("uscitaA") Long uscitaA,
+			@QueryParam("ingressoDa") DateParam ingressoDa,
+			@QueryParam("ingressoA") DateParam ingressoA,
+			@QueryParam("uscitaDa") DateParam uscitaDa,
+			@QueryParam("uscitaA") DateParam uscitaA,
+			@QueryParam("nomeVisitatore") String nomeVisitatore,
+			@QueryParam("cognomeVisitatore") String cognomeVisitatore,
 			@QueryParam("offset") Integer offset,
 			@QueryParam("limit") Integer limit) {
 
@@ -60,10 +63,12 @@ public class AccessoResource extends BaseResource {
 				idStato,
 				destinatario,
 				autorizzatoDa,
-				makeDateParam(ingressoDa),
-				makeDateParam(ingressoA),
-				makeDateParam(uscitaDa),
-				makeDateParam(uscitaA),
+				extractDateParam(ingressoDa),
+				extractDateParam(ingressoA),
+				extractDateParam(uscitaDa),
+				extractDateParam(uscitaA),
+				nomeVisitatore,
+				cognomeVisitatore,
 				offset, 
 				limit);
 		

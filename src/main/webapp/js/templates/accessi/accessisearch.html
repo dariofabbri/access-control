@@ -12,7 +12,7 @@
 						id="nomeVisitatore" 
 						type="text" 
 						placeholder="Scrivi parte del nome per filtrare la lista"
-						value="<%=collection.queryArguments.nome%>" />
+						value="<%=collection.queryArguments.nomeVisitatore%>" />
 					<span class="help-inline"></span>
 				</div>
 			</div>
@@ -23,7 +23,80 @@
 						id="cognomeVisitatore" 
 						type="text" 
 						placeholder="Scrivi parte del cognome per filtrare la lista"
-						value="<%=collection.queryArguments.cognome%>" />
+						value="<%=collection.queryArguments.cognomeVisitatore%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="destinatario">Destinatario: </label>
+				<div class="controls">
+					<input 
+						id="destinatario" 
+						type="text" 
+						placeholder="Scrivi parte del nome del destinatario"
+						value="<%=collection.queryArguments.destinatario%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="autorizzatoDa">Autorizzato da: </label>
+				<div class="controls">
+					<input 
+						id="autorizzatoDa" 
+						type="text" 
+						placeholder="Scrivi parte del nome di chi ha autorizzato"
+						value="<%=collection.queryArguments.autorizzatoDa%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="idStato">Stato accesso: </label>
+				<div class="controls">
+					<select	id="idStato" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="ingressoDa">Ingresso (da): </label>
+				<div class="controls">
+					<input 
+						id="ingressoDa" 
+						type="text" 
+						placeholder="gg/mm/aaaa hh:mm:ss"
+						value="<%=collection.queryArguments.ingressoDa%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="ingressoA">Ingresso (a): </label>
+				<div class="controls">
+					<input 
+						id="ingressoA" 
+						type="text" 
+						placeholder="gg/mm/aaaa hh:mm:ss"
+						value="<%=collection.queryArguments.ingressoA%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="uscitaDa">Uscita (da): </label>
+				<div class="controls">
+					<input 
+						id="uscitaDa" 
+						type="text" 
+						placeholder="gg/mm/aaaa hh:mm:ss"
+						value="<%=collection.queryArguments.uscitaDa%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="uscitaA">Uscita (a): </label>
+				<div class="controls">
+					<input 
+						id="uscitaA" 
+						type="text" 
+						placeholder="gg/mm/aaaa hh:mm:ss"
+						value="<%=collection.queryArguments.uscitaA%>" />
 					<span class="help-inline"></span>
 				</div>
 			</div>

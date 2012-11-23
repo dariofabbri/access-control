@@ -37,10 +37,24 @@ define([
 						
 			var nomeVisitatore = $("#nomeVisitatore").val();
 			var cognomeVisitatore = $("#cognomeVisitatore").val();
-
+			var destinatario = $("#destinatario").val();
+			var autorizzatoDa = $("#autorizzatoDa").val();
+			var idStato = $("#idStato").val();
+			var ingressoDa = $("#ingressoDa").val();
+			var ingressoA = $("#ingressoA").val();
+			var uscitaDa = $("#uscitaDa").val();
+			var uscitaA = $("#uscitaA").val();
+			
 			this.collection.fetchPage(1, {
 				nomeVisitatore: nomeVisitatore,
-				cognomeVisitatore: cognomeVisitatore
+				cognomeVisitatore: cognomeVisitatore,
+				destinatario: destinatario,
+				autorizzatoDa: autorizzatoDa,
+				idStato: idStato,
+				ingressoDa: ingressoDa,
+				ingressoA: ingressoA,
+				uscitaDa: uscitaDa,
+				uscitaA: uscitaA				
 			});
 
 			$("div#searchModal", this.el).modal("hide");
@@ -57,7 +71,7 @@ define([
 			
 			// Set focus to first field.
 			//
-			$("input#nome", this.el).focus();
+			$("input#nomeVisitatore", this.el).focus();
 		}
 	});
 	

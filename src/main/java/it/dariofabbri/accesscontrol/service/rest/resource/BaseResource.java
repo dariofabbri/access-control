@@ -1,15 +1,17 @@
 package it.dariofabbri.accesscontrol.service.rest.resource;
 
+import it.dariofabbri.accesscontrol.service.rest.param.DateParam;
+
 import java.util.Date;
 
 public abstract class BaseResource {
 
-	public Date makeDateParam(Long millis) {
+	public Date extractDateParam(DateParam param) {
 		
-		if(millis == null)
+		if(param == null)
 			return null;
 		
-		return new Date(millis);
+		return param.getValue();
 	}
 	
 }

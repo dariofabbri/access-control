@@ -16,6 +16,8 @@ public interface AccessoService extends Service {
 			Date ingressoA,
 			Date uscitaDa,
 			Date uscitaA,
+			String nomeVisitatore,
+			String cognomeVisitatore,
 			Integer offset,
 			Integer limit);
 

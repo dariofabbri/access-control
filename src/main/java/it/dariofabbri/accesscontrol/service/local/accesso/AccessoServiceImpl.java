@@ -24,10 +24,13 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Date ingressoA,
 			Date uscitaDa,
 			Date uscitaA,
+			String nomeVisitatore,
+			String cognomeVisitatore,
 			Integer offset,
 			Integer limit) {
 
-		QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA q = new QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaA(session);
+		QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore q = 
+				new QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore(session);
 
 		q.setIdStato(stato);
 		q.setDestinatario(destinatario);
@@ -36,6 +39,8 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		q.setIngressoA(ingressoA);
 		q.setUscitaDa(uscitaDa);
 		q.setUscitaA(uscitaA);
+		q.setNomeVisitatore(nomeVisitatore);
+		q.setCognomeVisitatore(cognomeVisitatore);
 		q.setOffset(offset);
 		q.setLimit(limit);
 		
