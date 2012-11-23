@@ -2,11 +2,12 @@ define([
 	"underscore", 
 	"backbone",
 	"jquery",
+	"access-control/collections/lutitems",
 	"access-control/views/common/pager",
 	"access-control/views/accessi/accessilistitem",
 	"access-control/views/accessi/accessisearch",
 	"text!templates/accessi/accessilist.html"], 
-	function(_, Backbone, $, Pager, ItemView, SearchView, listTemplate) {
+	function(_, Backbone, $, LUTItems, Pager, ItemView, SearchView, listTemplate) {
 	
 	var view = Backbone.View.extend({
 		
@@ -14,11 +15,16 @@ define([
 
 		events: {
 			"click a#search": "search",
+			"click a#inCorso": "searchInCorso",
 			"click a#reset-filters": "resetFilters"
 		},
 
 		initialize: function() {
 			this.collection.on("reset", this.render, this);
+
+			this.statoAccessoList = new LUTItems();
+			this.statoAccessoList.url += "/statoaccesso";
+			this.statoAccessoList.fetch();
 		},
 
 		onClose: function() {
@@ -88,7 +94,8 @@ define([
 			// the query on the backend.
 			// 
 			var searchView = new SearchView({
-				collection: this.collection
+				collection: this.collection,
+				statoAccessoList: this.statoAccessoList
 			});
 			
 			// Keep a reference to search view for later clean-up.
@@ -100,6 +107,12 @@ define([
 			$("div#modalContainer", this.el).html(searchView.render().el);
 			$("div#searchModal", this.el).modal("show");
 			$("div#searchModal", this.el).on("shown", searchView.setFocus);
+		},
+		
+		searchInCorso: function() {
+			
+			this.collection.queryArguments.idStato = 1;
+			this.collection.fetchPage();
 		},
 
 		resetFilters: function() {

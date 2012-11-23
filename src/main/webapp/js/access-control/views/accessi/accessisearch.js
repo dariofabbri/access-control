@@ -20,10 +20,28 @@ define([
 			this.$el.html(_.template(searchTemplate, {
 				collection: this.collection
 			}));
+			
+			// Populate drop down lists.
+			//
+			var that = this;
+			_.each(this.statoAccessoList.models, function(item) {
+				
+				var $option = $("<option/>")
+					.appendTo($("select#idStato", that.$el))
+					.attr("value", item.get("id"))
+					.text(item.get("descrizione"));
+				
+				if(item.get("id") === that.collection.queryArguments.idStato) {
+					$option.attr("selected", true);
+				}
+			});
+
 			return this;
 		},
 		
-		initialize: function() {
+		initialize: function(options) {
+			
+			this.statoAccessoList = options.statoAccessoList;
 		},
 		
 		manageEnter: function(e) {

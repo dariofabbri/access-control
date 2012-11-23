@@ -180,7 +180,7 @@ public class QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUsci
 		if(cognomeVisitatore != null)
 			hql += "and upper(vis.cognome) like :cognomeVisitatore ";
 
-		hql += "order by acc.id ";
+		hql += "order by acc.ingresso desc ";
 		
 		return hql;
 	}

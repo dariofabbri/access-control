@@ -47,6 +47,7 @@ define([
 			});
 			
 			if(result) {
+				var that = this;
 				this.model.save({}, {
 					success: function() {
 						Backbone.history.navigate("VisitatoriList", true);		

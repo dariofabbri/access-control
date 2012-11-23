@@ -39,8 +39,8 @@ define([
 			
 			var json = _.clone(this.attributes);
 			
-			json.ingresso = this.makeIsoDate(this.get("ingresso"));
-			json.uscita = this.makeIsoDate(this.get("uscita"));
+			json.ingresso = this.makeIsoTimestamp(this.get("ingresso"));
+			json.uscita = this.makeIsoTimestamp(this.get("uscita"));
 			return json;
 		},
 		

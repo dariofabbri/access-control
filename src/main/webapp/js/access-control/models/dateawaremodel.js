@@ -49,6 +49,15 @@ define([
 			}
 			
 			return moment.utc(dateString, "D/M/YYYY").format();
+		},
+		
+		makeIsoTimestamp: function(dateString) {
+			
+			if(!this.checkDate(dateString)) {
+				return null;
+			}
+			
+			return moment(dateString, "D/M/YYYY HH:mm:ss").format();
 		}
 	});
 	

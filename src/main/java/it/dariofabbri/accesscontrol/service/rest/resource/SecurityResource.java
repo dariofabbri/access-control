@@ -177,5 +177,16 @@ public class SecurityResource extends BaseResource {
 			.entity(list)
 			.build();
 	}	
+	
+	
+	@GET
+	@Path("/check")
+	public Response checkSession() {
 
+		logger.debug("checkSession called!");
+
+		return Response
+			.ok()
+			.build();
+	}
 }

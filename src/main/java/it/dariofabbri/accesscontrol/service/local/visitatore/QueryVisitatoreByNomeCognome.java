@@ -69,7 +69,7 @@ public class QueryVisitatoreByNomeCognome extends Query<Visitatore> {
 		if(cognome != null)
 			hql += "and upper(vis.cognome) like :cognome ";
 
-		hql += "order by vis.cognome ";
+		hql += "order by vis.cognome, vis.nome ";
 		
 		return hql;
 	}

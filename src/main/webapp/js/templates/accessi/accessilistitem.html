@@ -7,7 +7,11 @@
 	<div class="btn-group">
 		<a id="detail" class="btn btn-mini"><i class="icon-file"/></a>
 		<a id="report" class="btn btn-mini"><i class="icon-print"/></a>
-		<a id="close" class="btn btn-mini btn-success"><i class="icon-ok icon-white"/></a>
-		<a id="cancel" class="btn btn-mini btn-danger"><i class="icon-off icon-white"/></a>
+		<a id="reportTest" class="btn btn-mini"><i class="icon-print"/></a>
+<%
+var disabled = idStato !== 1 ? "disabled" : "";
+%>
+		<a id="close" class="btn btn-mini btn-success <%=disabled%>"><i class="icon-ok icon-white"/></a>
+		<a id="cancel" class="btn btn-mini btn-danger <%=disabled%>"><i class="icon-off icon-white"/></a>
 	</div>
 </td>

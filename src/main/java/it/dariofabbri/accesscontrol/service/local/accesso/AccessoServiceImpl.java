@@ -147,20 +147,40 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			logger.info(message);
 			throw new NotFoundException(message);
 		}
-		
+
+		// Fetch visitatore.
+		//
 		Visitatore visitatore = (Visitatore)session.get(Visitatore.class, idVisitatore);
 		if(visitatore == null) {
 			throw new ServiceException("Unable to look up visitatore using passed id: " + idVisitatore); 
 		}
 		
+		// Fetch new stato.
+		//
 		StatoAccesso stato = (StatoAccesso)session.get(StatoAccesso.class, idStato);
 		if(stato == null) {
 			throw new ServiceException("Unable to look up stato accesso using passed id: " + idStato); 
 		}
 		
+		// Fetch operatore.
+		//
 		User operatore = (User)session.get(User.class, idOperatore);
 		if(operatore == null) {
 			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
+		}
+		
+		// Check current status and verify possible transitions.
+		// In case update uscita field.
+		//
+		Integer currentStatus = accesso.getStato().getId();
+		if(currentStatus != StatoAccesso.IN_CORSO) {
+			if(idStato != currentStatus) {
+				throw new ServiceException("The status cannot be updated, already in terminal state.");
+			}
+		} else {
+			if(idStato != currentStatus) {
+				accesso.setUscita(new Date());
+			}
 		}
 
 		accesso.setVisitatore(visitatore);
@@ -168,10 +188,9 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setOperatore(operatore);
 		accesso.setDestinatario(destinatario);
 		accesso.setAutorizzatoDa(autorizzatoDa);
-		accesso.setIngresso(ingresso);
-		accesso.setUscita(uscita);
+		//accesso.setIngresso(ingresso);
+		//accesso.setUscita(uscita);
 		accesso.setNote(note);
-		
 		session.update(accesso);
 		
 		return accesso;

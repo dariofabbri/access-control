@@ -2,56 +2,133 @@ define([
 	"underscore", 
 	"backbone",
 	"jquery",
+	"access-control/views/accessi/accessidetail",
+	"access-control/views/accessi/accessireport",
 	"text!templates/accessi/accessilistitem.html"], 
-	function(_, Backbone, $, itemTemplate) {
+	function(_, Backbone, $, DetailView, ReportView, itemTemplate) {
 	
 	var view = Backbone.View.extend({
 		
 		tagName: "tr",
 		
 		events: {
-			"click a#remove": "removeItem",
-			"click a#edit": "editItem",
-			"click a#newAccesso": "newAccesso"
+			"click a#detail": "showDetail",
+			"click a#report": "showReport",
+			"click a#reportTest": "showReportTest",
+			"click a#close": "setToClose",
+			"click a#cancel": "setToCancel"
 		},
 		
 		render: function() {
 			
-			this.$el.append(_.template(itemTemplate, this.model.toJSONView()));
+			this.$el.html(_.template(itemTemplate, this.model.toJSONView()));
 			return this;
 		},
-		
-		removeItem: function() {
 
+		initialize: function() {
+			this.model.on("change", this.render, this);
+		},
+
+		onClose: function() {
+			this.model.off("change", this.render);
+		},
+
+		childViews: [],
+
+		showDetail: function() {
+
+			var detailView = new DetailView({
+				model: this.model
+			});
+			
+			// Keep a reference to search view for later clean-up.
+			//
+			this.childViews.push(detailView);
+				
+			// Render the view and show modal.
+			//
+			$("div#modalContainer").html(detailView.render().el);
+			$("div#detailModal", detailView.el).modal("show");
+		},
+		
+		showReport: function() {
+			
+			// TODO: if the session has expired this will open
+			//       a new window only to show an error message.
+			//
+			var url = 
+				"api/reports/passi/" + 
+				this.model.id + 
+				"?x-security-token=" + 
+				application.loginInfo.get("securityToken");
+			window.open(url);
+		},
+		
+		showReportTest: function() {
+
+			var reportView = new ReportView({
+				model: this.model
+			});
+			
+			// Keep a reference to search view for later clean-up.
+			//
+			this.childViews.push(reportView);
+				
+			// Render the view and show modal.
+			//
+			$("div#modalContainer").html(reportView.render().el);
+			$("div#reportModal", reportView.el).modal("show");
+
+		},
+		
+		setToClose: function() {
+			
+			if(this.model.get("idStato") !== 1)
+				return;
+			
 			application.modalDialog.show({
-				title: "Attenzione",
-				message: "Confermi la cancellazione del visitatore selezionato?",
+				title: "Chiusura",
+				message: "Confermi la chiusura dell'accesso selezionato?",
 				okCaption: "Sì",
-				okCallback: this.doRemoveItem,
+				okCallback: this.doSetToClose,
 				showOk: true,
 				cancelCaption: "No",
-				cancelCallback: this.cancelRemoveItem,
+				cancelCallback: null,
 				showCancel: true,
 				context: this
 			});
 		},
 		
-		editItem: function() {
-			Backbone.history.navigate("VisitatoriEdit/" + this.model.id, true);
-		},
-		
-		newAccesso: function() {
-			Backbone.history.navigate("VisitatoriNewAccesso/" + this.model.id, true);
-		},
-		
-		cancelRemoveItem: function() {
+		setToCancel: function() {
 			
+			if(this.model.get("idStato") !== 1)
+				return;
+			
+			application.modalDialog.show({
+				title: "Annullamento",
+				message: "Confermi l'annullamento dell'accesso selezionato?",
+				okCaption: "Sì",
+				okCallback: this.doSetToCancel,
+				showOk: true,
+				cancelCaption: "No",
+				cancelCallback: null,
+				showCancel: true,
+				context: this
+			});
 		},
 		
-		doRemoveItem: function() {
+		doSetToClose: function() {
 			
-			this.model.destroy({wait: true});
-			this.remove();
+			this.model.set("idStato", 2);
+			this.model.save({}, {async: false});
+			this.model.fetch();					
+		},
+		
+		doSetToCancel: function() {
+			
+			this.model.set("idStato", 3);
+			this.model.save({}, {async: false});
+			this.model.fetch();					
 		}
 	});
 	
