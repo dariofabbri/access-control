@@ -1,0 +1,36 @@
+<div id="searchModal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Pannello di ricerca</h3>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="nomeVisitatore">Nome: </label>
+				<div class="controls">
+					<input 
+						id="nomeVisitatore" 
+						type="text" 
+						placeholder="Scrivi parte del nome per filtrare la lista"
+						value="<%=collection.queryArguments.nome%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="cognomeVisitatore">Cognome: </label>
+				<div class="controls">
+					<input 
+						id="cognomeVisitatore" 
+						type="text" 
+						placeholder="Scrivi parte del cognome per filtrare la lista"
+						value="<%=collection.queryArguments.cognome%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<a id="closeModal" class="btn">Chiudi</a>
+		<a id="saveModalSelection" class="btn btn-primary">Applica</a>
+	</div>
+</div>	

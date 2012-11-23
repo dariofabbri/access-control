@@ -44,6 +44,7 @@ require([
 	"access-control/routers/roles",
 	"access-control/routers/permissions",
 	"access-control/routers/visitatori",
+	"access-control/routers/accessi",
 	"access-control/models/logininfo",
 	"access-control/views/common/modaldialog",
 	"bootstrap",
@@ -60,6 +61,7 @@ require([
 			RolesRouter,
 			PermissionsRouter,
 			VisitatoriRouter,
+			AccessiRouter,
 			LoginInfo,
 			ModalDialogView) {
 	
@@ -250,6 +252,7 @@ require([
 		application.routers.push(new RolesRouter());
 		application.routers.push(new PermissionsRouter());
 		application.routers.push(new VisitatoriRouter());
+		application.routers.push(new AccessiRouter());
 		
 		application.buildNewLoginInfo = function() {
 
