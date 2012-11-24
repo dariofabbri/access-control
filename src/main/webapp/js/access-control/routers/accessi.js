@@ -2,11 +2,13 @@ define([
 	"underscore", 
 	"backbone",
 	"access-control/views/accessi/accessilist",
+	"access-control/views/accessi/accessireport",
 	"access-control/collections/accessi"], 
 	function(
 			_, 
 			Backbone, 
-			AccessiListView, 
+			AccessiListView,
+			AccessiReportView,
 			Accessi) {
 
 	var accessi = Backbone.Router.extend({
@@ -15,7 +17,8 @@ define([
 		
 		routes: {
 			"AccessiList": "list",
-			"AccessiList/page/:page": "page"
+			"AccessiList/page/:page": "page",
+			"AccessiReport/id/:id": "report"
 		},
 		
 		list: function() {
@@ -29,6 +32,18 @@ define([
 		page: function(page) {
 			
 			this.collection.fetchPage(page);
+		},
+		
+		report: function(id) {
+			
+			var model = new (this.collection.model)({id: id});
+			model.fetch();
+
+			var view = new AccessiReportView({
+				model: model
+			});
+			
+			this.show(view, "#container");
 		}
 	});
 

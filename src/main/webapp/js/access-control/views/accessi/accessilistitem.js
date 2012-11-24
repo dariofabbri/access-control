@@ -14,7 +14,6 @@ define([
 		events: {
 			"click a#detail": "showDetail",
 			"click a#report": "showReport",
-			"click a#reportTest": "showReportTest",
 			"click a#close": "setToClose",
 			"click a#cancel": "setToCancel"
 		},
@@ -51,7 +50,7 @@ define([
 			$("div#detailModal", detailView.el).modal("show");
 		},
 		
-		showReport: function() {
+		showReportNewWindow: function() {
 			
 			// TODO: if the session has expired this will open
 			//       a new window only to show an error message.
@@ -64,21 +63,9 @@ define([
 			window.open(url);
 		},
 		
-		showReportTest: function() {
-
-			var reportView = new ReportView({
-				model: this.model
-			});
+		showReport: function() {
 			
-			// Keep a reference to search view for later clean-up.
-			//
-			this.childViews.push(reportView);
-				
-			// Render the view and show modal.
-			//
-			$("div#modalContainer").html(reportView.render().el);
-			$("div#reportModal", reportView.el).modal("show");
-
+			Backbone.history.navigate("AccessiReport/id/" + this.model.id, true);
 		},
 		
 		setToClose: function() {

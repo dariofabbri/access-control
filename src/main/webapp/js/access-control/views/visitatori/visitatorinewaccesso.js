@@ -50,7 +50,7 @@ define([
 				var that = this;
 				this.model.save({}, {
 					success: function() {
-						Backbone.history.navigate("VisitatoriList", true);		
+						Backbone.history.navigate("AccessiReport/id/" + that.model.id, true);		
 					}
 				});
 			}

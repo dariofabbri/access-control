@@ -10,7 +10,7 @@ define([
 		tagName: "div",
 		
 		events: {
-			"click a#saveModalSelection": "cancel",
+			"click a#printAccesso": "printAccesso",
 			"click a#closeModal": "cancel"
 		},
 		
@@ -24,6 +24,14 @@ define([
 			
 			$("div#detailModal", this.el).modal("hide");
 			this.close();
+		},
+		
+		printAccesso: function() {
+			
+			$("div#detailModal", this.el).modal("hide");
+			this.close();
+			
+			Backbone.history.navigate("AccessiReport/id/" + this.model.id, true);
 		}
 	});
 	

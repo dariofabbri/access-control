@@ -1,20 +1,23 @@
 <div id="detailModal" class="modal hide fade">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3>Dettaglio</h3>
+		<h3>Dettaglio accesso</h3>
 	</div>
 	<div class="modal-body">
-		<p><%=nomeVisitatore%></p>
-		<p><%=cognomeVisitatore%></p>
-		<p><%=destinatario%></p>
-		<p><%=autorizzatoDa%></p>
-		<p><%=descrizioneStato%></p>
-		<p><%=ingresso%></p>
-		<p><%=uscita%></p>
-		<p><%=note%></p>
+		<p>Progressivo: <em><%=id%></em></p>
+		<p>Passi n.: <em>???</em></p>
+		<p>Nome: <em><%=nomeVisitatore%></em></p>
+		<p>Cognome: <em><%=cognomeVisitatore%></em></p>
+		<p>Destinatario: <em><%=destinatario%></em></p>
+		<p>Autorizzato da: <em><%=autorizzatoDa%></em></p>
+		<p>Ingresso: <em><%=ingresso%></em></p>
+		<p>Uscita: <em><%=uscita%></em></p>
+		<p>Stato: <em><%=descrizioneStato%></em></p>
+		<p>Note:</p>
+		<p><em><%=note%></em></p>
 	</div>
 	<div class="modal-footer">
-		<a id="closeModal" class="btn">Chiudi</a>
-		<a id="saveModalSelection" class="btn btn-primary">Applica</a>
+		<a id="printAccesso" class="btn"><i class="icon-print"></i> Stampa</a>
+		<a id="closeModal" class="btn">Indietro</a>
 	</div>
 </div>	

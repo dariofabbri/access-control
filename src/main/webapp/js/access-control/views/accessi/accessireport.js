@@ -10,8 +10,7 @@ define([
 		tagName: "div",
 		
 		events: {
-			"click a#saveModalSelection": "cancel",
-			"click a#closeModal": "cancel"
+			"click a#back": "back"
 		},
 		
 		render: function() {
@@ -23,10 +22,9 @@ define([
 			return this;
 		},
 		
-		cancel: function() {
+		back: function() {
 			
-			$("div#reportModal", this.el).modal("hide");
-			this.close();
+			Backbone.history.navigate("AccessiList", true);			
 		}
 	});
 	
