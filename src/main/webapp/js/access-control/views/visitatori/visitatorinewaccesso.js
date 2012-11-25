@@ -11,9 +11,17 @@ define([
 		
 		events: {
 			"click a#save": "save",
-			"click a#cancel": "cancel"
+			"click a#cancel": "cancel",
+			"keypress": "manageEnter"
 		},
 		
+		manageEnter: function(e) {
+			if (e.keyCode == 13) {
+				e.preventDefault();
+				this.save();
+			}
+		},
+
 		render: function() {
 
 			this.$el.html(_.template(editTemplate, this.model.toJSONView()));

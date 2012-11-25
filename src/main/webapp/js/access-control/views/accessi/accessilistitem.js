@@ -21,6 +21,10 @@ define([
 		render: function() {
 			
 			this.$el.html(_.template(itemTemplate, this.model.toJSONView()));
+			$("a#detail", this.el).tooltip();
+			$("a#report", this.el).tooltip();
+			$("a#close", this.el).tooltip();
+			$("a#cancel", this.el).tooltip();
 			return this;
 		},
 
@@ -30,11 +34,18 @@ define([
 
 		onClose: function() {
 			this.model.off("change", this.render);
+
+			$("a#detail", this.el).tooltip("destroy");
+			$("a#report", this.el).tooltip("destroy");
+			$("a#close", this.el).tooltip("destroy");
+			$("a#cancel", this.el).tooltip("destroy");
 		},
 
 		childViews: [],
 
 		showDetail: function() {
+
+			$("a#detail", this.el).tooltip("destroy");			
 
 			var detailView = new DetailView({
 				model: this.model
@@ -64,14 +75,18 @@ define([
 		},
 		
 		showReport: function() {
-			
+
+			$("a#report", this.el).tooltip("destroy");			
+
 			Backbone.history.navigate("AccessiReport/id/" + this.model.id, true);
 		},
 		
 		setToClose: function() {
-			
+
 			if(this.model.get("idStato") !== 1)
 				return;
+
+			$("a#close", this.el).tooltip("destroy");			
 			
 			application.modalDialog.show({
 				title: "Chiusura",
@@ -91,6 +106,8 @@ define([
 			if(this.model.get("idStato") !== 1)
 				return;
 			
+			$("a#cancel", this.el).tooltip("destroy");			
+
 			application.modalDialog.show({
 				title: "Annullamento",
 				message: "Confermi l'annullamento dell'accesso selezionato?",

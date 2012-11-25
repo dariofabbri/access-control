@@ -29,6 +29,10 @@ define([
 
 		onClose: function() {
 			this.collection.off("reset", this.render);
+
+			$("a#reset-filters", this.el).tooltip("destroy");
+			$("a#search", this.el).tooltip("destroy");
+			$("a#inCorso", this.el).tooltip("destroy");
 		},
 
 		childViews: [],
@@ -43,10 +47,11 @@ define([
 				collection: this.collection
 			}));
 			
-			// If the collection has filters applied, 
-			// show the special button to clean up filters.
+			// Activate tooltips.
 			//
 			$("a#reset-filters", this.el).tooltip();
+			$("a#search", this.el).tooltip();
+			$("a#inCorso", this.el).tooltip();
 
 			// Render an item view for each model in the collection.
 			//
@@ -89,6 +94,11 @@ define([
 		
 		search: function() {
 			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
+			$("a#search", this.el).tooltip("destroy");
+
 			// Create the search view object by passing the
 			// current collection, that will be used for reissuing
 			// the query on the backend.
@@ -111,12 +121,20 @@ define([
 		
 		searchInCorso: function() {
 			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
+			$("a#inCorso", this.el).tooltip("destroy");
+
 			this.collection.queryArguments.idStato = 1;
 			this.collection.fetchPage();
 		},
 
 		resetFilters: function() {
-
+			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
 			$("a#reset-filters", this.el).tooltip("destroy");
 
 			this.collection.resetFilters();

@@ -1,17 +1,29 @@
 <td><%=passi%></td>
-<td><%=nomeVisitatore%></td>
 <td><%=cognomeVisitatore%></td>
+<td><%=nomeVisitatore%></td>
 <td><%=destinatario%></td>
 <td><%=ingresso%></td>
 <td><%=uscita%></td>
 <td class="btn-column">
 	<div class="btn-group">
-		<a id="detail" class="btn btn-mini"><i class="icon-file"/></a>
-		<a id="report" class="btn btn-mini"><i class="icon-print"/></a>
+		<a id="detail" 
+			class="btn btn-mini" 
+			rel="tooltip" 
+			title="Premere qui per visualizzare il dettaglio dell'accesso n. <%=id%>."><i class="icon-file"/></a>
+		<a id="report" 
+			class="btn btn-mini"
+			rel="tooltip" 
+			title="Premere qui per stampare il passi per l'accesso n. <%=id%>."><i class="icon-print"/></a>
 <%
 var disabled = idStato !== 1 ? "disabled" : "";
 %>
-		<a id="close" class="btn btn-mini btn-success <%=disabled%>"><i class="icon-ok icon-white"/></a>
-		<a id="cancel" class="btn btn-mini btn-danger <%=disabled%>"><i class="icon-off icon-white"/></a>
+		<a id="close" 
+			class="btn btn-mini <%=disabled%>"
+			rel="tooltip"
+			title="Premere qui per modificare lo stato dell'accesso n. <%=id%> a chiuso."><i class="icon-arrow-left"/></a>
+		<a id="cancel" 
+			class="btn btn-mini <%=disabled%>"
+			rel="tooltip"
+			title="Premere qui per modificare lo stato dell'accesso n. <%=id%> ad annullato."><i class="icon-trash"/></a>
 	</div>
 </td>

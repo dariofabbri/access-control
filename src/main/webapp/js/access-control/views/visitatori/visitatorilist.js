@@ -26,7 +26,10 @@ define([
 		onClose: function() {
 			
 			this.collection.off("reset", this.render);
-			$("a#reset-filters", this.el).tooltip();
+
+			$("a#reset-filters", this.el).tooltip("destroy");
+			$("a#search", this.el).tooltip("destroy");
+			$("a#add", this.el).tooltip("destroy");
 		},
 
 		childViews: [],

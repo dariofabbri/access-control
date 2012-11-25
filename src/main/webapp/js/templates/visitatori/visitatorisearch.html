@@ -6,17 +6,6 @@
 	<div class="modal-body">
 		<form class="form-horizontal">
 			<div class="control-group">
-				<label class="control-label" for="nome">Nome: </label>
-				<div class="controls">
-					<input 
-						id="nome" 
-						type="text" 
-						placeholder="Scrivi parte del nome per filtrare la lista"
-						value="<%=collection.queryArguments.nome%>" />
-					<span class="help-inline"></span>
-				</div>
-			</div>
-			<div class="control-group">
 				<label class="control-label" for="cognome">Cognome: </label>
 				<div class="controls">
 					<input 
@@ -24,6 +13,17 @@
 						type="text" 
 						placeholder="Scrivi parte del cognome per filtrare la lista"
 						value="<%=collection.queryArguments.cognome%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="nome">Nome: </label>
+				<div class="controls">
+					<input 
+						id="nome" 
+						type="text" 
+						placeholder="Scrivi parte del nome per filtrare la lista"
+						value="<%=collection.queryArguments.nome%>" />
 					<span class="help-inline"></span>
 				</div>
 			</div>

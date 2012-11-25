@@ -91,7 +91,7 @@ define([
 			
 			// Set focus to first field.
 			//
-			$("input#nomeVisitatore", this.el).focus();
+			$("input#cognomeVisitatore", this.el).focus();
 		}
 	});
 	

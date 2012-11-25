@@ -6,17 +6,6 @@
 	<div class="modal-body">
 		<form class="form-horizontal">
 			<div class="control-group">
-				<label class="control-label" for="nomeVisitatore">Nome: </label>
-				<div class="controls">
-					<input 
-						id="nomeVisitatore" 
-						type="text" 
-						placeholder="Scrivi parte del nome per filtrare la lista"
-						value="<%=collection.queryArguments.nomeVisitatore%>" />
-					<span class="help-inline"></span>
-				</div>
-			</div>
-			<div class="control-group">
 				<label class="control-label" for="cognomeVisitatore">Cognome: </label>
 				<div class="controls">
 					<input 
@@ -24,6 +13,17 @@
 						type="text" 
 						placeholder="Scrivi parte del cognome per filtrare la lista"
 						value="<%=collection.queryArguments.cognomeVisitatore%>" />
+					<span class="help-inline"></span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="nomeVisitatore">Nome: </label>
+				<div class="controls">
+					<input 
+						id="nomeVisitatore" 
+						type="text" 
+						placeholder="Scrivi parte del nome per filtrare la lista"
+						value="<%=collection.queryArguments.nomeVisitatore%>" />
 					<span class="help-inline"></span>
 				</div>
 			</div>
@@ -69,6 +69,7 @@
 					<span class="help-inline"></span>
 				</div>
 			</div>
+			<!--
 			<div class="control-group">
 				<label class="control-label" for="ingressoDa">Ingresso (da): </label>
 				<div class="controls">
@@ -113,6 +114,7 @@
 					<span class="help-inline"></span>
 				</div>
 			</div>
+			-->
 		</form>
 	</div>
 	<div class="modal-footer">

@@ -57,7 +57,7 @@ define([
 			
 			// Set focus to first field.
 			//
-			$("input#nome", this.el).focus();
+			$("input#cognome", this.el).focus();
 		}
 	});
 	
