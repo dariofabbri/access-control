@@ -1,10 +1,23 @@
 <form class="well form-horizontal">
 	<legend>Creazione nuovo accesso</legend>
 	<div class="control-group">
+		<label class="control-label" for="passi">Passi: </label>
+		<div class="controls">
+			<input 
+				id="passi" 
+				required="true"
+				type="text" 
+				placeholder="Inserisci il numero del passi"
+				value="<%=passi%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
 		<label class="control-label" for="destinatario">Destinatario: </label>
 		<div class="controls">
 			<input 
 				id="destinatario" 
+				required="true"
 				type="text" 
 				placeholder="Inserisci il destinatario"
 				value="<%=destinatario%>" />
@@ -16,6 +29,7 @@
 		<div class="controls">
 			<input 
 				id="autorizzatoDa" 
+				required="true"
 				type="text" 
 				placeholder="Inserisci da chi è autorizzato"
 				value="<%=autorizzatoDa%>" />
@@ -26,7 +40,8 @@
 		<label class="control-label" for="note">Annotazioni: </label>
 		<div class="controls">
 			<textarea 
-				id="note" 
+				id="note"
+				rows="5"
 				placeholder="Inserisci eventuali annotazioni"><%=note%></textarea>
 			<span class="help-inline"></span>
 		</div>

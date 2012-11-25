@@ -32,15 +32,17 @@ define([
 			this.model.off("change", this.render, this);
 		},
 
-		autofocus: "#destinatario",
+		autofocus: "#passi",
 
 		save: function() {
 						
+			var passi = $("#passi").val();
 			var destinatario = $("#destinatario").val();
 			var autorizzatoDa = $("#autorizzatoDa").val();
 			var note = $("#note").val();
 
 			var result = this.model.set({
+				passi: passi,
 				destinatario: destinatario,
 				autorizzatoDa: autorizzatoDa,
 				note: note
@@ -62,6 +64,13 @@ define([
 		},
 		
 		showErrors: function(model, errors) {
+			
+			if(errors.passi) {
+				this.highlightField("#passi", "error", errors.passi);
+			}
+			else {
+				this.highlightField("#passi", "success");
+			}
 			
 			if(errors.destinatario) {
 				this.highlightField("#destinatario", "error", errors.destinatario);

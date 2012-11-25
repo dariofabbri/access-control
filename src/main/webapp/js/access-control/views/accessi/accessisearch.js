@@ -55,6 +55,7 @@ define([
 						
 			var nomeVisitatore = $("#nomeVisitatore").val();
 			var cognomeVisitatore = $("#cognomeVisitatore").val();
+			var passi = $("#passi").val();
 			var destinatario = $("#destinatario").val();
 			var autorizzatoDa = $("#autorizzatoDa").val();
 			var idStato = $("#idStato").val();
@@ -66,6 +67,7 @@ define([
 			this.collection.fetchPage(1, {
 				nomeVisitatore: nomeVisitatore,
 				cognomeVisitatore: cognomeVisitatore,
+				passi: passi,
 				destinatario: destinatario,
 				autorizzatoDa: autorizzatoDa,
 				idStato: idStato,

@@ -16,9 +16,17 @@ define([
 		},
 		
 		render: function() {
-			
+
 			this.$el.append(_.template(itemTemplate, this.model.toJSONView()));
+			$("a#newAccesso", this.el).tooltip();
+			$("a#edit", this.el).tooltip();
 			return this;
+		},
+		
+		onClose: function() {
+			
+			$("a#newAccesso", this.el).tooltip("destroy");			
+			$("a#edit", this.el).tooltip("destroy");			
 		},
 		
 		removeItem: function() {
@@ -37,10 +45,14 @@ define([
 		},
 		
 		editItem: function() {
+
+			$("a#edit", this.el).tooltip("destroy");			
 			Backbone.history.navigate("VisitatoriEdit/" + this.model.id, true);
 		},
 		
 		newAccesso: function() {
+			
+			$("a#newAccesso", this.el).tooltip("destroy");
 			Backbone.history.navigate("VisitatoriNewAccesso/" + this.model.id, true);
 		},
 		

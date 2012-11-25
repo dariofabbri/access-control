@@ -18,6 +18,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 	@Override
 	public QueryResult<Accesso> listAccessi(
 			Integer stato,
+			String passi,
 			String destinatario,
 			String autorizzatoDa,
 			Date ingressoDa,
@@ -29,10 +30,11 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Integer offset,
 			Integer limit) {
 
-		QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore q = 
-				new QueryAccessoByStatoDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore(session);
+		QueryAccessoByStatoPassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore q = 
+				new QueryAccessoByStatoPassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore(session);
 
 		q.setIdStato(stato);
+		q.setPassi(passi);
 		q.setDestinatario(destinatario);
 		q.setAutorizzatoDa(autorizzatoDa);
 		q.setIngressoDa(ingressoDa);
@@ -84,7 +86,8 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 	public Accesso createAccesso(
 			Integer idVisitatore, 
 			Integer idStato, 
-			Integer idOperatore, 
+			Integer idOperatore,
+			String passi,
 			String destinatario, 
 			String autorizzatoDa, 
 			Date ingresso, 
@@ -115,6 +118,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setVisitatore(visitatore);
 		accesso.setStato(stato);
 		accesso.setOperatore(operatore);
+		accesso.setPassi(passi);
 		accesso.setDestinatario(destinatario);
 		accesso.setAutorizzatoDa(autorizzatoDa);
 		accesso.setIngresso(ingresso);
@@ -134,7 +138,8 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Integer id,
 			Integer idVisitatore, 
 			Integer idStato, 
-			Integer idOperatore, 
+			Integer idOperatore,
+			String passi,
 			String destinatario, 
 			String autorizzatoDa, 
 			Date ingresso, 
@@ -186,6 +191,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setVisitatore(visitatore);
 		accesso.setStato(stato);
 		accesso.setOperatore(operatore);
+		accesso.setPassi(passi);
 		accesso.setDestinatario(destinatario);
 		accesso.setAutorizzatoDa(autorizzatoDa);
 		//accesso.setIngresso(ingresso);

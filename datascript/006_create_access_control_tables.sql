@@ -28,6 +28,7 @@ CREATE TABLE acc_accesso
 	id_visitatore INTEGER NOT NULL REFERENCES acc_visitatore(id),
 	id_stato INTEGER NOT NULL REFERENCES acc_stato_accesso(id),
 	id_user INTEGER NOT NULL REFERENCES sec_user(id),
+  passi VARCHAR(255),
 	destinatario VARCHAR(255),
 	autorizzato_da VARCHAR(255),
 	ingresso TIMESTAMP,

@@ -38,6 +38,7 @@ public class AccessoResource extends BaseResource {
 	@GET
 	public Response getAccessi(
 			@QueryParam("idStato") Integer idStato,
+			@QueryParam("passi") String passi,
 			@QueryParam("destinatario") String destinatario,
 			@QueryParam("autorizzatoDa") String autorizzatoDa,
 			@QueryParam("ingressoDa") DateParam ingressoDa,
@@ -61,6 +62,7 @@ public class AccessoResource extends BaseResource {
 		AccessoService as = ServiceFactory.createAccessoService();
 		QueryResult<Accesso> result = as.listAccessi(
 				idStato,
+				passi,
 				destinatario,
 				autorizzatoDa,
 				extractDateParam(ingressoDa),
@@ -141,6 +143,7 @@ public class AccessoResource extends BaseResource {
 				accesso.getIdVisitatore(),
 				accesso.getIdStato(),
 				accesso.getIdOperatore(),
+				accesso.getPassi(),
 				accesso.getDestinatario(),
 				accesso.getAutorizzatoDa(),
 				accesso.getIngresso(),
@@ -175,6 +178,7 @@ public class AccessoResource extends BaseResource {
 				accesso.getIdVisitatore(),
 				accesso.getIdStato(),
 				accesso.getIdOperatore(),
+				accesso.getPassi(),
 				accesso.getDestinatario(),
 				accesso.getAutorizzatoDa(),
 				accesso.getIngresso(),

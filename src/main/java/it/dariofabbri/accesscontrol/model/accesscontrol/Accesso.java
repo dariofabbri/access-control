@@ -38,6 +38,9 @@ public class Accesso {
 	@JoinColumn(name="id_user")
 	private User operatore;
 
+	@Column(name="passi")
+	private String passi;
+
 	@Column(name="destinatario")
 	private String destinatario;
 
@@ -87,6 +90,14 @@ public class Accesso {
 
 	public String getDestinatario() {
 		return destinatario;
+	}
+
+	public String getPassi() {
+		return passi;
+	}
+
+	public void setPassi(String passi) {
+		this.passi = passi;
 	}
 
 	public void setDestinatario(String destinatario) {

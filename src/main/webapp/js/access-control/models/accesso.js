@@ -14,6 +14,7 @@ define([
 			idStato: null,
 			descrizioneStato: null,
 			idOperatore: null,
+			passi: null,
 			destinatario: null,
 			autorizzatoDa: null,
 			ingresso: null,
@@ -54,6 +55,10 @@ define([
 
 			if(_.isNull(changed.idOperatore)) {
 				errors.idOperatore = "Il campo è obbligatorio.";
+			}
+			
+			if(_.isEmpty(changed.passi)) {
+				errors.passi = "Il campo è obbligatorio.";
 			}
 			
 			if(_.isEmpty(changed.destinatario)) {

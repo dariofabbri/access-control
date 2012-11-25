@@ -5,6 +5,7 @@
 		<div class="controls">
 			<input 
 				id="nome" 
+				required="true"
 				type="text" 
 				placeholder="Inserisci il nome"
 				value="<%=nome%>" />
@@ -16,6 +17,7 @@
 		<div class="controls">
 			<input 
 				id="cognome" 
+				required="true"
 				type="text" 
 				placeholder="Inserisci il cognome"
 				value="<%=cognome%>" />
@@ -25,7 +27,9 @@
 	<div class="control-group">
 		<label class="control-label" for="tipoDocumento">Tipo documento: </label>
 		<div class="controls">
-			<select	id="tipoDocumento" />
+			<select	
+				id="tipoDocumento" 
+				required="true" />
 			<span class="help-inline"></span>
 		</div>
 	</div>
@@ -34,6 +38,7 @@
 		<div class="controls">
 			<input 
 				id="numeroDocumento" 
+				required="true"
 				type="text" 
 				placeholder="Inserisci il numero del documento"
 				value="<%=numeroDocumento%>" />

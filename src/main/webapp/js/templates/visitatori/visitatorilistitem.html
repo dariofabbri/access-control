@@ -1,3 +1,6 @@
+<%
+var descr = nome + " " + cognome;
+%>
 <td><%=nome%></td>
 <td><%=cognome%></td>
 <td><%=ultimoAccesso%></td>
@@ -6,7 +9,15 @@
 		<!--
 		<a id="remove" class="btn btn-mini btn-danger"><i class="icon-off icon-white"/></a>
 		-->
-		<a id="newAccesso" class="btn btn-mini btn-info"><i class="icon-random"/></a>
-		<a id="edit" class="btn btn-mini"><i class="icon-pencil"/></a>
+		<a 
+			id="newAccesso" 
+			class="btn btn-mini" 
+			rel="tooltip" 
+			title="Premere qui per creare un nuovo accesso per il visitatore <%=descr%>."><i class="icon-random"/></a>
+		<a 
+			id="edit" 
+			class="btn btn-mini"
+			rel="tooltip" 
+			title="Premere qui per modificare i dettagli del visitatore <%=descr%>."><i class="icon-pencil"/></a>
 	</div>
 </td>

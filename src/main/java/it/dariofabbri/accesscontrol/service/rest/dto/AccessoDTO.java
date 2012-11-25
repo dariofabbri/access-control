@@ -11,6 +11,7 @@ public class AccessoDTO {
 	private Integer idStato;
 	private String descrizioneStato;
 	private Integer idOperatore;
+	private String passi;
 	private String destinatario;
 	private String autorizzatoDa;
 	private Date ingresso;
@@ -71,6 +72,14 @@ public class AccessoDTO {
 
 	public void setIdOperatore(Integer idOperatore) {
 		this.idOperatore = idOperatore;
+	}
+
+	public String getPassi() {
+		return passi;
+	}
+
+	public void setPassi(String passi) {
+		this.passi = passi;
 	}
 
 	public String getDestinatario() {

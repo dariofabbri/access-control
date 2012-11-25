@@ -41,6 +41,7 @@ public class VisitatoreServiceTest extends BaseServiceTest {
 				visitatore.getId(), 
 				StatoAccesso.IN_CORSO, 
 				operatore.getId(), 
+				"101",
 				"Conte Ugolino", 
 				"Cecco Angiolieri", 
 				new Date(), 

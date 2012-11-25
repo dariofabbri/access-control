@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Passi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78b2bcc-bc3e-4443-a6d8-75a369c0cd89">
-	<property name="ireport.zoom" value="0.75"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Passi" pageWidth="595" pageHeight="842" columnWidth="533" leftMargin="31" rightMargin="31" topMargin="31" bottomMargin="31" uuid="b78b2bcc-bc3e-4443-a6d8-75a369c0cd89">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="10"/>
+	<property name="ireport.y" value="86"/>
 	<parameter name="id_accesso" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[select
   acc.id as id_accesso,
+  acc.passi,
   acc.destinatario,
   acc.autorizzato_da,
   acc.ingresso,
@@ -51,71 +52,209 @@
 	<field name="numero_documento" class="java.lang.String"/>
 	<field name="id_tipo_documento" class="java.lang.Integer"/>
 	<field name="descrizione_tipo_documento" class="java.lang.String"/>
+	<field name="passi" class="java.lang.String"/>
 	<title>
-		<band height="150" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="0" width="555" height="21"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Centro Agroalimentare Roma]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="21" width="555" height="21"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="false"/>
-				</textElement>
-				<text><![CDATA[La città dei commerci]]></text>
-			</staticText>
+		<band height="139" splitType="Stretch">
+			<image>
+				<reportElement uuid="42bd9b97-4230-4837-a00a-78f79cb0bac6" x="152" y="0" width="228" height="139"/>
+				<imageExpression><![CDATA["reports/car.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<detail>
 		<band height="230" splitType="Stretch">
 			<rectangle>
-				<reportElement uuid="2709ced9-94e7-485a-9d58-46e2d433ce44" x="0" y="0" width="555" height="215"/>
+				<reportElement uuid="2709ced9-94e7-485a-9d58-46e2d433ce44" x="0" y="0" width="533" height="196"/>
 			</rectangle>
 			<staticText>
-				<reportElement uuid="5238f08f-5fba-4f21-b621-bdf2b5a4f5e3" x="227" y="12" width="100" height="20"/>
-				<textElement/>
+				<reportElement uuid="5238f08f-5fba-4f21-b621-bdf2b5a4f5e3" x="216" y="12" width="100" height="14"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[PASSI DI ACCESSO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="13" y="43" width="100" height="20"/>
+				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="21" y="65" width="111" height="14"/>
 				<textElement/>
-				<text><![CDATA[NOME]]></text>
+				<text><![CDATA[Nome]]></text>
 			</staticText>
-			<textField>
-				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="113" y="43" width="100" height="20"/>
-				<textElement/>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="132" y="65" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_visitatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="13" y="63" width="100" height="20"/>
+				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="284" y="65" width="111" height="14"/>
 				<textElement/>
-				<text><![CDATA[COGNOME]]></text>
+				<text><![CDATA[Cognome]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="395" y="65" width="138" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cognome_visitatore}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8b0dd241-bf54-4771-84aa-0d117845ca58" x="21" y="42" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Passi n°]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="80c78f4c-4da2-4c81-9262-be91d7a97f35" x="132" y="42" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{passi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b26d21eb-2dd9-40be-995b-f0fb60431b50" x="353" y="22" width="157" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["N° progr " + $F{id_accesso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0be9268-f86b-4f6d-b9fb-a0f20712e1d1" x="353" y="42" width="157" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Guidonia, il " + new SimpleDateFormat("dd/MM/yyyy").format($F{ingresso})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="955a60df-5865-449b-a956-2c2f5ad7ab43" x="21" y="79" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Tipo documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d1bd0b98-55c1-4e0a-a45a-9d8b81207cd7" x="132" y="79" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descrizione_tipo_documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f7a49d32-8b25-44ab-b5f7-a4a4b7e90595" x="284" y="79" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Numero documento]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4acc5855-9198-4522-b429-83ea7ea5526e" x="395" y="79" width="138" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3de5dc76-5dad-477a-a18f-0762fbb1387d" x="21" y="93" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Destinatario]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2e7bdcdf-2378-40bc-84aa-238bec082df0" x="132" y="93" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ae300b96-f0e9-4515-923f-b5745cad72ac" x="284" y="93" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Autorizzato da]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f01e8d00-0688-4431-8e94-32386349e63a" x="395" y="93" width="138" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autorizzato_da}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d325c303-ce5e-47ab-b92b-dfa8b9c1ef78" x="21" y="107" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Orario ingresso]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement uuid="d6ae7c58-9e22-4506-82c7-11a2acee912f" x="132" y="107" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ingresso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="79401b27-9027-41b5-8891-b83e5c364f8e" x="21" y="121" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Orario uscita]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement uuid="3fd6b656-deec-449f-8f40-f1437cccc696" x="132" y="121" width="127" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uscita}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="284" y="107" width="111" height="14"/>
+				<textElement/>
+				<text><![CDATA[Matr. operatore]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="113" y="63" width="100" height="20"/>
+				<reportElement uuid="fa94945c-764d-4355-b3b6-6e7778ea5b3b" x="395" y="107" width="138" height="14"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_operatore}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="353" y="135" width="180" height="14"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{cognome_visitatore}]]></textFieldExpression>
+				<text><![CDATA[Firma e timbro destinatario]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="0ff78138-2119-4dfa-8655-edddb1f0d7f8" x="349" y="170" width="139" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b09e1ed4-8750-4819-93ba-6b57eab68560" x="21" y="149" width="45" height="20"/>
+				<textElement/>
+				<text><![CDATA[Note]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="da390f84-504a-455e-b613-fd15ed08d062" x="76" y="149" width="208" height="36"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="380" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="694b0809-6b7e-405a-ad98-fcbd39762602" x="0" y="0" width="533" height="350"/>
+			</rectangle>
 			<staticText>
-				<reportElement uuid="e6e06af6-a930-4e48-b48f-5cbc7b19f936" x="0" y="0" width="555" height="380"/>
-				<box topPadding="10" leftPadding="10" bottomPadding="10" rightPadding="10">
-					<pen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
-				</box>
-				<textElement textAlignment="Justified">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sem nibh, aliquam vel luctus at, ultrices nec magna. Integer tincidunt feugiat ligula, nec tempor nibh interdum sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eleifend velit eget quam dictum sit amet iaculis quam accumsan. Integer sit amet nunc sed felis sodales interdum. Aenean porttitor neque vel dolor hendrerit non ullamcorper nulla sagittis. Integer ligula nisi, ullamcorper vel congue a, tincidunt sed ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent elementum eleifend velit et bibendum. Sed a orci eget neque convallis hendrerit. Aliquam congue nulla nec sem fermentum luctus. Donec et erat quis nisi cursus mollis ut in neque. Mauris luctus, mauris ac rhoncus eleifend, lacus mauris elementum sem, ac pharetra dolor sem sed purus. Proin ut erat lectus. Suspendisse potenti. Fusce elementum, orci et vestibulum congue, massa risus rhoncus turpis, sit amet gravida massa ipsum ut nulla.]]></text>
+				<reportElement uuid="b9ec9e5b-921e-4ab2-8ff3-372f1a9eef29" x="0" y="38" width="533" height="17"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Informazione ai visitatori ai sensi del D.lgs 30.06.2003 n.196 "Protezione dei dati personali"]]></text>
 			</staticText>
+			<staticText>
+				<reportElement uuid="3774c772-fa55-496d-92b8-03bd22662b93" x="21" y="76" width="489" height="133"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Ai sensi del D.lgs. 30.06.2003 n.196, si informa che i dati forniti per la compilazione del seguente modulo, sono raccolti e trattati esclusivamente per finalità funzionali all'esercizio dei diritti e dell'adempimento degli obblighi derivati dalla permanenza temporanea del visitatore in azienda, e dalle norme di legge, comprese quelle relative alla sicurezza delle persone. - Il conferimento dei suddetti dati è facoltativo, e l'eventuale rifiuto implica il diniego di accesso all'immobile. - La comunicazione dei suddetti dati può essere effettuata alle persone che l'interessato dichiara di visitare e, in caso di evento dannoso o di fatti costituenti reato, agli assicuratori ai fini del risarcimento e/o alle autorità competenti. - Il permesso d'ingresso è conservato presso la sede visitata per un periodo minimo di trente (30) giorni e non superiore ad un anno. - Titolare del trattamento è la "Cargest Srl", con sede in via Tenuta del Cavaliere, 1 - 00012 Guidonia Montecelio - Roma.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="83edc121-bb4f-4724-94da-30ef75b3bc39" x="21" y="247" width="238" height="20"/>
+				<textElement/>
+				<text><![CDATA[Il sottoscritto, presa visione di quanto sopra:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3a2ced2e-bd22-4090-ba85-ffcfe3fd6a53" x="363" y="274" width="125" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Firma per accettazione]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="cb03a908-b8ab-4595-a83d-e3aa17225e8a" x="349" y="315" width="161" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
 		</band>
 	</pageFooter>
 </jasperReport>

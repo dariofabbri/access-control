@@ -63,7 +63,7 @@ define([
 			if(!_.isEmpty(changed.dataNascita)) {
 				
 				if(!this.checkDate(changed.dataNascita)) {
-					errors.dataNascita = "La data immessa non è valida.";
+					errors.dataNascita = "La data immessa non è valida (gg/mm/aaaa).";
 				}
 			}
 			

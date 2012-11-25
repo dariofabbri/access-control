@@ -19,11 +19,14 @@ define([
 		},
 
 		initialize: function() {
+
 			this.collection.on("reset", this.render, this);
 		},
 
 		onClose: function() {
+			
 			this.collection.off("reset", this.render);
+			$("a#reset-filters", this.el).tooltip();
 		},
 
 		childViews: [],
@@ -38,10 +41,11 @@ define([
 				collection: this.collection
 			}));
 			
-			// If the collection has filters applied, 
-			// show the special button to clean up filters.
+			// Activate tooltips.
 			//
 			$("a#reset-filters", this.el).tooltip();
+			$("a#search", this.el).tooltip();
+			$("a#add", this.el).tooltip();
 
 			// Render an item view for each model in the collection.
 			//
@@ -84,11 +88,21 @@ define([
 		
 		addItem: function() {
 			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
+			$("a#add", this.el).tooltip("destroy");
+			
 			Backbone.history.navigate("VisitatoriNew", true);
 		},
 		
 		search: function() {
 			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
+			$("a#search", this.el).tooltip("destroy");
+
 			// Create the search view object by passing the
 			// current collection, that will be used for reissuing
 			// the query on the backend.
