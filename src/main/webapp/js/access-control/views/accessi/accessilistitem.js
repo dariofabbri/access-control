@@ -23,8 +23,8 @@ define([
 			this.$el.html(_.template(itemTemplate, this.model.toJSONView()));
 			$("a#detail", this.el).tooltip();
 			$("a#report", this.el).tooltip();
-			$("a#close", this.el).tooltip();
-			$("a#cancel", this.el).tooltip();
+			$("a#close:not(.disabled)", this.el).tooltip();
+			$("a#cancel:not(.disabled)", this.el).tooltip();
 			return this;
 		},
 
@@ -85,8 +85,6 @@ define([
 
 			if(this.model.get("idStato") !== 1)
 				return;
-
-			$("a#close", this.el).tooltip("destroy");			
 			
 			application.modalDialog.show({
 				title: "Chiusura",
@@ -105,8 +103,6 @@ define([
 			
 			if(this.model.get("idStato") !== 1)
 				return;
-			
-			$("a#cancel", this.el).tooltip("destroy");			
 
 			application.modalDialog.show({
 				title: "Annullamento",
@@ -122,7 +118,9 @@ define([
 		},
 		
 		doSetToClose: function() {
-			
+
+			$("a#close", this.el).tooltip("destroy");			
+
 			this.model.set("idStato", 2);
 			this.model.save({}, {async: false});
 			this.model.fetch();					
@@ -130,6 +128,8 @@ define([
 		
 		doSetToCancel: function() {
 			
+			$("a#cancel", this.el).tooltip("destroy");			
+
 			this.model.set("idStato", 3);
 			this.model.save({}, {async: false});
 			this.model.fetch();					

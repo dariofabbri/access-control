@@ -58,6 +58,24 @@ define([
 			}
 			
 			return moment(dateString, "D/M/YYYY HH:mm:ss").format();
+		},
+		
+		makeIsoTimestampSod: function(dateString) {
+			
+			if(!this.checkDate(dateString)) {
+				return null;
+			}
+			
+			return moment(dateString, "D/M/YYYY HH:mm:ss").startOf("day").format();
+		},
+		
+		makeIsoTimestampEod: function(dateString) {
+			
+			if(!this.checkDate(dateString)) {
+				return null;
+			}
+			
+			return moment(dateString, "D/M/YYYY HH:mm:ss").endOf("day").format();
 		}
 	});
 	

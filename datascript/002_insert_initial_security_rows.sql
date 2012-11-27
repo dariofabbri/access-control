@@ -2,7 +2,7 @@
   VALUES ('admin', 'admin', 'Administrator', 'Administrator', null);
 
 INSERT INTO sec_role (rolename, description)
-  VALUES ('admin', null);
+  VALUES ('admin', 'Ruolo di amministrazione');
 
 INSERT INTO sec_permission (permstring)
   VALUES ('*');

@@ -3,7 +3,9 @@ package it.dariofabbri.accesscontrol.service.rest.resource;
 
 import it.dariofabbri.accesscontrol.service.local.report.BasicReportService;
 import it.dariofabbri.accesscontrol.service.local.report.ReportService;
+import it.dariofabbri.accesscontrol.service.rest.param.DateParam;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -41,7 +44,7 @@ public class ReportResource extends BaseResource {
 		
 		return Response.ok().entity(report).build();
 	}
-	
+
 	@GET
 	@Path("/passi/{id}")
 	public Response getPassiReport(@PathParam("id") Integer id) {
@@ -60,6 +63,40 @@ public class ReportResource extends BaseResource {
 		
 		ReportService rs = new ReportService();
 		byte[] report = rs.generateReport("reports/passi.jasper", parameters);
+		
+		return Response.ok().entity(report).build();
+	}
+
+	@GET
+	@Path("/listaaccessi")
+	public Response getListaAccessiReport(
+			@QueryParam("dataDa") DateParam dataDa,
+			@QueryParam("dataA") DateParam dataA)
+	{
+		logger.debug("getListaAccessiReport called!");
+		
+		Subject currentUser = SecurityUtils.getSubject();
+		if(!currentUser.isPermitted("reports:listaccessi")) {
+			return Response.status(Status.UNAUTHORIZED).entity("Operation not permitted.").build();
+		}
+
+		// Validate input parameters.
+		//
+		if(dataDa == null) {
+			return Response.status(Status.BAD_REQUEST).entity("Parameter dataDa not specified.").build();
+		}
+		if(dataA == null) {
+			return Response.status(Status.BAD_REQUEST).entity("Parameter dataA not specified.").build();
+		}
+
+		// Prepare parameter map.
+		//
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("dataDa", new Timestamp(dataDa.getValue().getTime()));
+		parameters.put("dataA", new Timestamp(dataA.getValue().getTime()));
+		
+		ReportService rs = new ReportService();
+		byte[] report = rs.generateReport("reports/listaaccessi.jasper", parameters);
 		
 		return Response.ok().entity(report).build();
 	}

@@ -234,6 +234,7 @@ require([
 			"permissions:update",
 			"reports:basictest",
 			"reports:passi",
+			"reports:listaaccessi",
 			"roles:addpermission",
 			"roles:create",
 			"roles:delete",

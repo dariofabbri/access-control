@@ -1,0 +1,29 @@
+<h3>Report lista accessi</h3>
+<form class="well form-horizontal">
+	<legend>Parametri di generazione</legend>
+	<div class="control-group">
+		<label class="control-label" for="dataDa">A partire dalla data: </label>
+		<div class="controls">
+			<input 
+				id="dataDa" 
+				type="text" 
+				placeholder="Data in formato gg/mm/aaaa"
+				value="<%=dataDa%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="dataA">Fino alla data: </label>
+		<div class="controls">
+			<input 
+				id="dataA" 
+				type="text" 
+				placeholder="Data in formato gg/mm/aaaa"
+				value="<%=dataA%>" />
+			<span class="help-inline"></span>
+		</div>
+	</div>
+	<div class="form-actions">
+		<a id="generate" class="btn btn-primary">Genera report</a>
+	</div>
+</form>

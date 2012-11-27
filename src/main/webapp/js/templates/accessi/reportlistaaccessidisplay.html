@@ -1,0 +1,18 @@
+<%
+var url = "api/reports/listaaccessi?x-security-token=" + 
+	token +
+	"&dataDa=" +
+	encodeURIComponent(dataDa) +
+	"&dataA=" +
+	encodeURIComponent(dataA);
+%>
+<h3>Report accessi</h3>
+<p>
+	<a id="back" class="btn" type="button">Indietro</a>
+</p>
+<object id="pdf" data="<%=url%>" type="application/pdf" width="100%" height="500px" class="img-polaroid">
+	<p>
+		Sembra che non sia disponibile un plugin per visualizzare i PDF in questo browser.
+		<a href="<%=url%>">Clicca qui per scaricare il file</a>
+	</p>
+</object>

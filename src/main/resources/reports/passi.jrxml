@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Passi" pageWidth="595" pageHeight="842" columnWidth="533" leftMargin="31" rightMargin="31" topMargin="31" bottomMargin="31" uuid="b78b2bcc-bc3e-4443-a6d8-75a369c0cd89">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="86"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="id_accesso" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -58,6 +58,10 @@
 			<image>
 				<reportElement uuid="42bd9b97-4230-4837-a00a-78f79cb0bac6" x="152" y="0" width="228" height="139"/>
 				<imageExpression><![CDATA["reports/car.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="d3cb0cc3-4844-4849-ae9b-9b8eaa5340bc" x="0" y="0" width="135" height="45"/>
+				<imageExpression><![CDATA["reports/metronotte.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -237,7 +241,7 @@
 			<staticText>
 				<reportElement uuid="3774c772-fa55-496d-92b8-03bd22662b93" x="21" y="76" width="489" height="133"/>
 				<textElement textAlignment="Justified"/>
-				<text><![CDATA[Ai sensi del D.lgs. 30.06.2003 n.196, si informa che i dati forniti per la compilazione del seguente modulo, sono raccolti e trattati esclusivamente per finalità funzionali all'esercizio dei diritti e dell'adempimento degli obblighi derivati dalla permanenza temporanea del visitatore in azienda, e dalle norme di legge, comprese quelle relative alla sicurezza delle persone. - Il conferimento dei suddetti dati è facoltativo, e l'eventuale rifiuto implica il diniego di accesso all'immobile. - La comunicazione dei suddetti dati può essere effettuata alle persone che l'interessato dichiara di visitare e, in caso di evento dannoso o di fatti costituenti reato, agli assicuratori ai fini del risarcimento e/o alle autorità competenti. - Il permesso d'ingresso è conservato presso la sede visitata per un periodo minimo di trente (30) giorni e non superiore ad un anno. - Titolare del trattamento è la "Cargest Srl", con sede in via Tenuta del Cavaliere, 1 - 00012 Guidonia Montecelio - Roma.]]></text>
+				<text><![CDATA[Ai sensi del D.lgs. 30.06.2003 n.196, si informa che i dati forniti per la compilazione del seguente modulo, sono raccolti e trattati esclusivamente per finalità funzionali all'esercizio dei diritti e dell'adempimento degli obblighi derivati dalla permanenza temporanea del visitatore in azienda, e dalle norme di legge, comprese quelle relative alla sicurezza delle persone. - Il conferimento dei suddetti dati è facoltativo, e l'eventuale rifiuto implica il diniego di accesso all'immobile. - La comunicazione dei suddetti dati può essere effettuata alle persone che l'interessato dichiara di visitare e, in caso di evento dannoso o di fatti costituenti reato, agli assicuratori ai fini del risarcimento e/o alle autorità competenti. - Il permesso d'ingresso è conservato presso la sede visitata per un periodo minimo di trenta (30) giorni e non superiore ad un anno. - Titolare del trattamento è la "Cargest Srl", con sede in via Tenuta del Cavaliere, 1 - 00012 Guidonia Montecelio - Roma.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="83edc121-bb4f-4724-94da-30ef75b3bc39" x="21" y="247" width="238" height="20"/>
