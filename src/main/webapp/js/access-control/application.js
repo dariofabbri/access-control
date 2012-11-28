@@ -3,7 +3,7 @@ require.config({
 	baseUrl: "js",
 	
 	paths: {
-		"jquery": "jquery/jquery-1.8.2",
+		"jquery": "jquery/jquery-1.8.3",
 		"underscore": "underscore/underscore",
 		"backbone": "backbone/backbone",
 		"text": "require/text",
