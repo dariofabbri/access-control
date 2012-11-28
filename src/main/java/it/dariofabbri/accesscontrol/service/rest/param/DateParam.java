@@ -10,6 +10,7 @@ public class DateParam extends AbstractParam<Date> {
 	
 	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
 	
+	
 	public DateParam(String param) throws WebApplicationException {
 		super(param);
 	}

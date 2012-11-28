@@ -3,12 +3,15 @@ package it.dariofabbri.accesscontrol.service.local.report;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -44,6 +47,11 @@ public class ReportService {
 			// Load report.
 			//
 			JasperReport jr = (JasperReport) JRLoader.loadObject(url);
+
+			// Inject desired locale parameter.
+			//
+			parameters.put(JRParameter.REPORT_LOCALE, Locale.ITALIAN);
+			parameters.put(JRParameter.REPORT_TIME_ZONE, TimeZone.getTimeZone("Europe/Rome"));
 			
 			// Fill report using provided parameters and acquired
 			// database connection.

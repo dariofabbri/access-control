@@ -72,142 +72,170 @@
 			</rectangle>
 			<staticText>
 				<reportElement uuid="5238f08f-5fba-4f21-b621-bdf2b5a4f5e3" x="216" y="12" width="100" height="14"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[PASSI DI ACCESSO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="21" y="65" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="132" y="65" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_visitatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="284" y="65" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Cognome]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="395" y="65" width="138" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cognome_visitatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="8b0dd241-bf54-4771-84aa-0d117845ca58" x="21" y="42" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Passi n°]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="80c78f4c-4da2-4c81-9262-be91d7a97f35" x="132" y="42" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{passi}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="b26d21eb-2dd9-40be-995b-f0fb60431b50" x="353" y="22" width="157" height="14"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
 				<textFieldExpression><![CDATA["N° progr " + $F{id_accesso}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement uuid="c0be9268-f86b-4f6d-b9fb-a0f20712e1d1" x="353" y="42" width="157" height="14"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Guidonia, il " + new SimpleDateFormat("dd/MM/yyyy").format($F{ingresso})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="955a60df-5865-449b-a956-2c2f5ad7ab43" x="21" y="79" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Tipo documento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="d1bd0b98-55c1-4e0a-a45a-9d8b81207cd7" x="132" y="79" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descrizione_tipo_documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="f7a49d32-8b25-44ab-b5f7-a4a4b7e90595" x="284" y="79" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Numero documento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="4acc5855-9198-4522-b429-83ea7ea5526e" x="395" y="79" width="138" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="3de5dc76-5dad-477a-a18f-0762fbb1387d" x="21" y="93" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Destinatario]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="2e7bdcdf-2378-40bc-84aa-238bec082df0" x="132" y="93" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="ae300b96-f0e9-4515-923f-b5745cad72ac" x="284" y="93" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Autorizzato da]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="f01e8d00-0688-4431-8e94-32386349e63a" x="395" y="93" width="138" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{autorizzato_da}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="d325c303-ce5e-47ab-b92b-dfa8b9c1ef78" x="21" y="107" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Orario ingresso]]></text>
 			</staticText>
 			<textField pattern="HH.mm" isBlankWhenNull="true">
 				<reportElement uuid="d6ae7c58-9e22-4506-82c7-11a2acee912f" x="132" y="107" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ingresso}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="79401b27-9027-41b5-8891-b83e5c364f8e" x="21" y="121" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Orario uscita]]></text>
 			</staticText>
 			<textField pattern="HH.mm" isBlankWhenNull="true">
 				<reportElement uuid="3fd6b656-deec-449f-8f40-f1437cccc696" x="132" y="121" width="127" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{uscita}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="284" y="107" width="111" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Matr. operatore]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="fa94945c-764d-4355-b3b6-6e7778ea5b3b" x="395" y="107" width="138" height="14"/>
 				<textElement>
-					<font isItalic="true"/>
+					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id_operatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="353" y="135" width="180" height="14"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Firma e timbro destinatario]]></text>
 			</staticText>
 			<line>
@@ -218,12 +246,16 @@
 			</line>
 			<staticText>
 				<reportElement uuid="b09e1ed4-8750-4819-93ba-6b57eab68560" x="21" y="149" width="45" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Note]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="da390f84-504a-455e-b613-fd15ed08d062" x="76" y="149" width="208" height="36"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -235,22 +267,30 @@
 			</rectangle>
 			<staticText>
 				<reportElement uuid="b9ec9e5b-921e-4ab2-8ff3-372f1a9eef29" x="0" y="38" width="533" height="17"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Informazione ai visitatori ai sensi del D.lgs 30.06.2003 n.196 "Protezione dei dati personali"]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="3774c772-fa55-496d-92b8-03bd22662b93" x="21" y="76" width="489" height="133"/>
-				<textElement textAlignment="Justified"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Ai sensi del D.lgs. 30.06.2003 n.196, si informa che i dati forniti per la compilazione del seguente modulo, sono raccolti e trattati esclusivamente per finalità funzionali all'esercizio dei diritti e dell'adempimento degli obblighi derivati dalla permanenza temporanea del visitatore in azienda, e dalle norme di legge, comprese quelle relative alla sicurezza delle persone. - Il conferimento dei suddetti dati è facoltativo, e l'eventuale rifiuto implica il diniego di accesso all'immobile. - La comunicazione dei suddetti dati può essere effettuata alle persone che l'interessato dichiara di visitare e, in caso di evento dannoso o di fatti costituenti reato, agli assicuratori ai fini del risarcimento e/o alle autorità competenti. - Il permesso d'ingresso è conservato presso la sede visitata per un periodo minimo di trenta (30) giorni e non superiore ad un anno. - Titolare del trattamento è la "Cargest Srl", con sede in via Tenuta del Cavaliere, 1 - 00012 Guidonia Montecelio - Roma.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="83edc121-bb4f-4724-94da-30ef75b3bc39" x="21" y="247" width="238" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Il sottoscritto, presa visione di quanto sopra:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="3a2ced2e-bd22-4090-ba85-ffcfe3fd6a53" x="363" y="274" width="125" height="20"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Firma per accettazione]]></text>
 			</staticText>
 			<line>

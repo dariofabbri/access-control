@@ -11,7 +11,6 @@ define([
 	
 		events: {
 			"click #login": "processSubmit",
-			"click #cancel": "cancelForm",
 			"keypress": "manageEnter"
 		},
 		
@@ -28,12 +27,6 @@ define([
 				e.preventDefault();
 				this.executeLogin();
 			}
-		},
-		
-		cancelForm: function(e) {
-			
-			e.preventDefault();
-			alert(application.loginInfo.get("loggedOn"));
 		},
 		
 		processSubmit: function(e) {
