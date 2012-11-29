@@ -38,6 +38,10 @@ public class Accesso {
 	@JoinColumn(name="id_user")
 	private User operatore;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_postazione")
+	private Postazione postazione;
+
 	@Column(name="passi")
 	private String passi;
 
@@ -88,8 +92,12 @@ public class Accesso {
 		this.operatore = operatore;
 	}
 
-	public String getDestinatario() {
-		return destinatario;
+	public Postazione getPostazione() {
+		return postazione;
+	}
+
+	public void setPostazione(Postazione postazione) {
+		this.postazione = postazione;
 	}
 
 	public String getPassi() {
@@ -98,6 +106,10 @@ public class Accesso {
 
 	public void setPassi(String passi) {
 		this.passi = passi;
+	}
+
+	public String getDestinatario() {
+		return destinatario;
 	}
 
 	public void setDestinatario(String destinatario) {

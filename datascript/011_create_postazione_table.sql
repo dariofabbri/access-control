@@ -1,7 +1,7 @@
 CREATE TABLE acc_postazione
 (
-	id SERIAL NOT NULL PRIMARY KEY,
-	descrizione VARCHAR(255) NOT NULL,
+  id SERIAL NOT NULL PRIMARY KEY,
+  descrizione VARCHAR(255) NOT NULL,
   luogo VARCHAR(255),
   note VARCHAR(4000)
 );
