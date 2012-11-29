@@ -11,6 +11,9 @@ define([
 		
 		events: {
 			"click a#generate": "generate",
+			"click a#today": "today",
+			"click a#yesterday": "yesterday",
+			"click a#month": "month",
 			"keypress": "manageEnter"
 		},
 		
@@ -56,6 +59,21 @@ define([
 			}
 		},
 		
+		today: function() {
+			
+			this.model.setForToday();
+		},
+		
+		yesterday: function() {
+			
+			this.model.setForYesterday();
+		},
+		
+		month: function() {
+			
+			this.model.setForCurrentMonth();
+		},
+
 		showErrors: function(model, errors) {
 			
 			if(errors.dataDa) {

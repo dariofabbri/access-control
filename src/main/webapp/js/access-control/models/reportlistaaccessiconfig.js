@@ -65,9 +65,31 @@ define([
 		setForToday: function() {
 			
 			var today = moment().format("DD/MM/YYYY");
+			
 			this.set({
 				dataDa: today,
 				dataA: today
+			});
+		},
+		
+		setForYesterday: function() {
+			
+			var today = moment().subtract("days", 1).format("DD/MM/YYYY");
+			
+			this.set({
+				dataDa: today,
+				dataA: today
+			});
+		},
+		
+		setForCurrentMonth: function() {
+			
+			var start = moment().startOf("month").format("DD/MM/YYYY");
+			var end = moment().endOf("month").format("DD/MM/YYYY");
+
+			this.set({
+				dataDa: start,
+				dataA: end
 			});
 		}
 	});
