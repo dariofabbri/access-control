@@ -71,6 +71,16 @@ define([
 			var password = $("#password").val();
 			var idPostazione = $("#idPostazione").val();
 			
+			if(_.isEmpty(idPostazione)) {
+				$("#notification").remove();
+			    $("form>legend").after(
+			   		_.template(alertTemplate, {
+							alertClass: "alert-error", 
+							title: "Errore", 
+							message: "Non è stata selezionata una postazione."}));
+			    return;
+			}
+			
 			application.loginInfo.save({username: username,	password: password}, {
 				success: function() {
 					
