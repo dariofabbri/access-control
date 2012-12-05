@@ -21,7 +21,7 @@ define([
 				collection: this.collection
 			}));
 			
-			// Populate drop down lists.
+			// Populate stato drop down list.
 			//
 			var that = this;
 			_.each(this.statoAccessoList.models, function(item) {
@@ -32,6 +32,21 @@ define([
 					.text(item.get("descrizione"));
 				
 				if(item.get("id") === that.collection.queryArguments.idStato) {
+					$option.attr("selected", true);
+				}
+			});
+			
+			// Populate postazione drop down list.
+			//
+			var that = this;
+			_.each(application.postazioni.models, function(item) {
+				
+				var $option = $("<option/>")
+					.appendTo($("select#idPostazione", that.$el))
+					.attr("value", item.get("id"))
+					.text(item.get("descrizione"));
+				
+				if(item.get("id") == that.collection.queryArguments.idPostazione) {
 					$option.attr("selected", true);
 				}
 			});
@@ -59,6 +74,7 @@ define([
 			var destinatario = $("#destinatario").val();
 			var autorizzatoDa = $("#autorizzatoDa").val();
 			var idStato = $("#idStato").val();
+			var idPostazione = $("#idPostazione").val();
 			var ingressoDa = $("#ingressoDa").val();
 			var ingressoA = $("#ingressoA").val();
 			var uscitaDa = $("#uscitaDa").val();
@@ -71,6 +87,7 @@ define([
 				destinatario: destinatario,
 				autorizzatoDa: autorizzatoDa,
 				idStato: idStato,
+				idPostazione: idPostazione,
 				ingressoDa: ingressoDa,
 				ingressoA: ingressoA,
 				uscitaDa: uscitaDa,

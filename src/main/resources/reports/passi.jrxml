@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Passi" pageWidth="595" pageHeight="842" columnWidth="533" leftMargin="31" rightMargin="31" topMargin="31" bottomMargin="31" uuid="b78b2bcc-bc3e-4443-a6d8-75a369c0cd89">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="329"/>
 	<parameter name="id_accesso" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -26,12 +26,15 @@
   vis.cognome as cognome_visitatore,
   vis.numero_documento as numero_documento,
   tdo.id as id_tipo_documento,
-  tdo.descrizione as descrizione_tipo_documento
+  tdo.descrizione as descrizione_tipo_documento,
+  pos.id as id_postazione,
+  pos.descrizione as descrizione_postazione
   from acc_accesso acc
   left join acc_stato_accesso sta on acc.id_stato = sta.id
   left join sec_user use on acc.id_user = use.id
   left join acc_visitatore vis on acc.id_visitatore = vis.id
   left join acc_tipo_documento tdo on vis.id_tipo_documento = tdo.id
+  left join acc_postazione pos on acc.id_postazione = pos.id
   where acc.id = $P{id_accesso}]]>
 	</queryString>
 	<field name="id_accesso" class="java.lang.Integer"/>
@@ -53,6 +56,8 @@
 	<field name="id_tipo_documento" class="java.lang.Integer"/>
 	<field name="descrizione_tipo_documento" class="java.lang.String"/>
 	<field name="passi" class="java.lang.String"/>
+	<field name="id_postazione" class="java.lang.String"/>
+	<field name="descrizione_postazione" class="java.lang.String"/>
 	<title>
 		<band height="139" splitType="Stretch">
 			<image>
@@ -78,42 +83,42 @@
 				<text><![CDATA[PASSI DI ACCESSO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="21" y="65" width="111" height="14"/>
+				<reportElement uuid="06ec17ad-3c8b-4d3d-9879-153be6f6330d" x="21" y="57" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="132" y="65" width="127" height="14"/>
+				<reportElement uuid="dd1d3fc9-1a1d-47e5-9850-31718c40c94d" x="132" y="57" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome_visitatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="284" y="65" width="111" height="14"/>
+				<reportElement uuid="7003fd09-8416-40dc-9115-7fd35d955baf" x="284" y="57" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Cognome]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="395" y="65" width="138" height="14"/>
+				<reportElement uuid="acd7685f-69b1-47cd-ade7-fb69887ef11b" x="395" y="57" width="138" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cognome_visitatore}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="8b0dd241-bf54-4771-84aa-0d117845ca58" x="21" y="42" width="111" height="14"/>
+				<reportElement uuid="8b0dd241-bf54-4771-84aa-0d117845ca58" x="21" y="34" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Passi n°]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="80c78f4c-4da2-4c81-9262-be91d7a97f35" x="132" y="42" width="127" height="14"/>
+				<reportElement uuid="80c78f4c-4da2-4c81-9262-be91d7a97f35" x="132" y="34" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
@@ -134,98 +139,98 @@
 				<textFieldExpression><![CDATA["Guidonia, il " + new SimpleDateFormat("dd/MM/yyyy").format($F{ingresso})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="955a60df-5865-449b-a956-2c2f5ad7ab43" x="21" y="79" width="111" height="14"/>
+				<reportElement uuid="955a60df-5865-449b-a956-2c2f5ad7ab43" x="21" y="71" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Tipo documento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d1bd0b98-55c1-4e0a-a45a-9d8b81207cd7" x="132" y="79" width="127" height="14"/>
+				<reportElement uuid="d1bd0b98-55c1-4e0a-a45a-9d8b81207cd7" x="132" y="71" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descrizione_tipo_documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="f7a49d32-8b25-44ab-b5f7-a4a4b7e90595" x="284" y="79" width="111" height="14"/>
+				<reportElement uuid="f7a49d32-8b25-44ab-b5f7-a4a4b7e90595" x="284" y="71" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Numero documento]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="4acc5855-9198-4522-b429-83ea7ea5526e" x="395" y="79" width="138" height="14"/>
+				<reportElement uuid="4acc5855-9198-4522-b429-83ea7ea5526e" x="395" y="71" width="138" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero_documento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="3de5dc76-5dad-477a-a18f-0762fbb1387d" x="21" y="93" width="111" height="14"/>
+				<reportElement uuid="3de5dc76-5dad-477a-a18f-0762fbb1387d" x="21" y="85" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Destinatario]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="2e7bdcdf-2378-40bc-84aa-238bec082df0" x="132" y="93" width="127" height="14"/>
+				<reportElement uuid="2e7bdcdf-2378-40bc-84aa-238bec082df0" x="132" y="85" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="ae300b96-f0e9-4515-923f-b5745cad72ac" x="284" y="93" width="111" height="14"/>
+				<reportElement uuid="ae300b96-f0e9-4515-923f-b5745cad72ac" x="284" y="85" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Autorizzato da]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="f01e8d00-0688-4431-8e94-32386349e63a" x="395" y="93" width="138" height="14"/>
+				<reportElement uuid="f01e8d00-0688-4431-8e94-32386349e63a" x="395" y="85" width="138" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{autorizzato_da}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="d325c303-ce5e-47ab-b92b-dfa8b9c1ef78" x="21" y="107" width="111" height="14"/>
+				<reportElement uuid="d325c303-ce5e-47ab-b92b-dfa8b9c1ef78" x="21" y="113" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Orario ingresso]]></text>
 			</staticText>
 			<textField pattern="HH.mm" isBlankWhenNull="true">
-				<reportElement uuid="d6ae7c58-9e22-4506-82c7-11a2acee912f" x="132" y="107" width="127" height="14"/>
+				<reportElement uuid="d6ae7c58-9e22-4506-82c7-11a2acee912f" x="132" y="113" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ingresso}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="79401b27-9027-41b5-8891-b83e5c364f8e" x="21" y="121" width="111" height="14"/>
+				<reportElement uuid="79401b27-9027-41b5-8891-b83e5c364f8e" x="21" y="127" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Orario uscita]]></text>
 			</staticText>
 			<textField pattern="HH.mm" isBlankWhenNull="true">
-				<reportElement uuid="3fd6b656-deec-449f-8f40-f1437cccc696" x="132" y="121" width="127" height="14"/>
+				<reportElement uuid="3fd6b656-deec-449f-8f40-f1437cccc696" x="132" y="127" width="127" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{uscita}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="284" y="107" width="111" height="14"/>
+				<reportElement uuid="ebce8054-ba54-4c16-a6c8-0960cbec92dc" x="284" y="99" width="111" height="14"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<text><![CDATA[Matr. operatore]]></text>
 			</staticText>
 			<textField>
-				<reportElement uuid="fa94945c-764d-4355-b3b6-6e7778ea5b3b" x="395" y="107" width="138" height="14"/>
+				<reportElement uuid="fa94945c-764d-4355-b3b6-6e7778ea5b3b" x="395" y="99" width="138" height="14"/>
 				<textElement>
 					<font fontName="Arial" isItalic="true"/>
 				</textElement>
@@ -258,6 +263,20 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement uuid="48b6e4a8-697d-4051-9e88-a0368b00adc4" x="132" y="99" width="127" height="14"/>
+				<textElement>
+					<font fontName="Arial" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descrizione_postazione}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3de5dc76-5dad-477a-a18f-0762fbb1387d" x="21" y="99" width="111" height="14"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Postazione]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>

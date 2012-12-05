@@ -10,6 +10,7 @@ public interface AccessoService extends Service {
 
 	QueryResult<Accesso> listAccessi(
 			Integer stato,
+			Integer idPostazione,
 			String passi,
 			String destinatario,
 			String autorizzatoDa,
@@ -30,6 +31,7 @@ public interface AccessoService extends Service {
 			Integer idVisitatore, 
 			Integer idStato, 
 			Integer idOperatore,
+			Integer idPostazione,
 			String passi,
 			String destinatario, 
 			String autorizzatoDa, 
@@ -42,6 +44,7 @@ public interface AccessoService extends Service {
 			Integer idVisitatore, 
 			Integer idStato, 
 			Integer idOperatore,
+			Integer idPostazione,
 			String passi,
 			String destinatario, 
 			String autorizzatoDa, 

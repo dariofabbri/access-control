@@ -40,6 +40,7 @@
         <mapping class="it.dariofabbri.accesscontrol.model.contact.Contact" />
 
 		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.Accesso" />
+		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.Postazione" />
 		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.StatoAccesso" />
 		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.TipoDocumento" />
 		<mapping class="it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore" />

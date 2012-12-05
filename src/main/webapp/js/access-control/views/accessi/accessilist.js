@@ -16,6 +16,7 @@ define([
 		events: {
 			"click a#search": "search",
 			"click a#inCorso": "searchInCorso",
+			"click a#postazione": "searchPostazione",
 			"click a#reset-filters": "resetFilters"
 		},
 
@@ -52,6 +53,7 @@ define([
 			$("a#reset-filters", this.el).tooltip();
 			$("a#search", this.el).tooltip();
 			$("a#inCorso", this.el).tooltip();
+			$("a#postazione", this.el).tooltip();
 
 			// Render an item view for each model in the collection.
 			//
@@ -127,6 +129,17 @@ define([
 			$("a#inCorso", this.el).tooltip("destroy");
 
 			this.collection.queryArguments.idStato = 1;
+			this.collection.fetchPage();
+		},
+		
+		searchPostazione: function() {
+			
+			// Destroy the tooltip (prevents leaving the tooltip
+			// open in the new window).
+			//
+			$("a#postazione", this.el).tooltip("destroy");
+
+			this.collection.queryArguments.idPostazione = application.loginInfo.get("idPostazione");
 			this.collection.fetchPage();
 		},
 

@@ -2,7 +2,7 @@
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
-			<td colspan="7" class="btn-column">
+			<td colspan="8" class="btn-column">
 			<%
 				if(collection.hasFilters()) {
 			%>
@@ -30,13 +30,21 @@
 					<i class="icon-search"/>
 					In corso
 				</a>
+				<a id="postazione" 
+					class="btn" 
+					rel="tooltip" 
+					title="Premere qui per visualizzare solo gli accessi relativi alla postazione corrente.">
+					<i class="icon-search"/>
+					Postazione corrente
+				</a>
 			</td>
 		</tr>
 		<tr>
 			<th class="span1">Passi</th>
-			<th class="span3">Cognome</th>
+			<th class="span2">Cognome</th>
 			<th class="span2">Nome</th>
-			<th class="span3">Destinatario</th>
+			<th class="span2">Destinatario</th>
+			<th class="span2">Postazione</th>
 			<th>Ingresso</th>
 			<th>Uscita</th>
 			<th class="btn-column"></th>

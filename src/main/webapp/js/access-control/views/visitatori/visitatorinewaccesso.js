@@ -48,9 +48,11 @@ define([
 			var destinatario = $("#destinatario").val();
 			var autorizzatoDa = $("#autorizzatoDa").val();
 			var note = $("#note").val();
+			var idPostazione = application.loginInfo.get("idPostazione");
 
 			var result = this.model.set({
 				passi: passi,
+				idPostazione: idPostazione,
 				destinatario: destinatario,
 				autorizzatoDa: autorizzatoDa,
 				note: note

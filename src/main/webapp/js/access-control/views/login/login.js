@@ -14,9 +14,39 @@ define([
 			"keypress": "manageEnter"
 		},
 		
+		initialize: function() {
+			
+			application.postazioni.on("reset", this.render, this);
+		},
+		
+		onClose: function() {
+			
+			application.postazioni.off("reset", this.render);			
+		},
+		
 		render: function() {
 			
 			this.$el.html(_.template(loginPanelTemplate));
+			
+			
+			// Populate drop down lists.
+			//
+			var that = this;
+			_.each(application.postazioni.models, function(item) {
+				
+				var $option = $("<option/>")
+					.appendTo($("select#idPostazione", that.$el))
+					.attr("value", item.get("id"))
+					.text(item.get("descrizione"));
+
+				// Set selected item.
+				//
+				if(item.get("id") === application.loginInfo.get("idPostazione")) {
+					$option.attr("selected", true);
+				}
+			});
+
+
 			return this;
 		},
 		
@@ -39,6 +69,7 @@ define([
 			
 			var username = $("#username").val();
 			var password = $("#password").val();
+			var idPostazione = $("#idPostazione").val();
 			
 			application.loginInfo.save({username: username,	password: password}, {
 				success: function() {
@@ -60,6 +91,11 @@ define([
 					// Set grants property in loginInfo object.
 					//
 					application.loginInfo.set("grants", grants.toJSON());
+					
+					// Save selected postazione.
+					//
+					application.loginInfo.set("idPostazione", idPostazione);
+					application.loginInfo.set("postazione", application.postazioni.get(idPostazione).get("descrizione"));
 					
 					// Move to home page.
 					//

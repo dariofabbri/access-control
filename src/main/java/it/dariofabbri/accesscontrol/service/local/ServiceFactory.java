@@ -8,6 +8,8 @@ import it.dariofabbri.accesscontrol.service.local.lut.LUTService;
 import it.dariofabbri.accesscontrol.service.local.lut.LUTServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionService;
 import it.dariofabbri.accesscontrol.service.local.permission.PermissionServiceImpl;
+import it.dariofabbri.accesscontrol.service.local.postazione.PostazioneService;
+import it.dariofabbri.accesscontrol.service.local.postazione.PostazioneServiceImpl;
 import it.dariofabbri.accesscontrol.service.local.report.ReportService;
 import it.dariofabbri.accesscontrol.service.local.role.RoleService;
 import it.dariofabbri.accesscontrol.service.local.role.RoleServiceImpl;
@@ -71,6 +73,12 @@ public class ServiceFactory {
 	public static ReportService createReportService() {
 		
 		ReportService service = new ReportService();
+		return service;
+	}
+	
+	public static PostazioneService createPostazioneService() {
+		
+		PostazioneService service = SessionDecorator.<PostazioneService>createProxy(new PostazioneServiceImpl(), PostazioneService.class);
 		return service;
 	}
 }

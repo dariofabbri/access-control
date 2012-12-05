@@ -40,7 +40,8 @@ public class VisitatoreServiceTest extends BaseServiceTest {
 		Accesso accesso = as.createAccesso(
 				visitatore.getId(), 
 				StatoAccesso.IN_CORSO, 
-				operatore.getId(), 
+				operatore.getId(),
+				1,
 				"101",
 				"Conte Ugolino", 
 				"Cecco Angiolieri", 

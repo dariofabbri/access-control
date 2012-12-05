@@ -11,6 +11,8 @@ public class AccessoDTO {
 	private Integer idStato;
 	private String descrizioneStato;
 	private Integer idOperatore;
+	private Integer idPostazione;
+	private String descrizionePostazione;
 	private String passi;
 	private String destinatario;
 	private String autorizzatoDa;
@@ -72,6 +74,22 @@ public class AccessoDTO {
 
 	public void setIdOperatore(Integer idOperatore) {
 		this.idOperatore = idOperatore;
+	}
+
+	public Integer getIdPostazione() {
+		return idPostazione;
+	}
+
+	public void setIdPostazione(Integer idPostazione) {
+		this.idPostazione = idPostazione;
+	}
+
+	public String getDescrizionePostazione() {
+		return descrizionePostazione;
+	}
+
+	public void setDescrizionePostazione(String descrizionePostazione) {
+		this.descrizionePostazione = descrizionePostazione;
 	}
 
 	public String getPassi() {

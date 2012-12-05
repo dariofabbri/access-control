@@ -46,6 +46,7 @@ require([
 	"access-control/routers/visitatori",
 	"access-control/routers/accessi",
 	"access-control/models/logininfo",
+	"access-control/collections/postazioni",
 	"access-control/views/common/modaldialog",
 	"bootstrap",
 	"momentjs"], 
@@ -63,6 +64,7 @@ require([
 			VisitatoriRouter,
 			AccessiRouter,
 			LoginInfo,
+			Postazioni,
 			ModalDialogView) {
 	
 	$(function() {
@@ -255,7 +257,12 @@ require([
 			"visitatori:delete",
 			"visitatori:get",
 			"visitatori:list",
-			"visitatori:update"
+			"visitatori:update",
+			"postazioni:create",
+			"postazioni:delete",
+			"postazioni:get",
+			"postazioni:list",
+			"postazioni:update"
 		];
 		
 		application.routers = [];
@@ -268,6 +275,8 @@ require([
 		application.routers.push(new VisitatoriRouter());
 		application.routers.push(new AccessiRouter());
 		
+		
+		
 		application.buildNewLoginInfo = function() {
 
 			if(application.loginInfo) {
@@ -275,10 +284,15 @@ require([
 			}
 			
 			application.loginInfo = new LoginInfo();
-			
 			application.loginInfo.on("destroy", application.buildNewLoginInfo, application);
+			
+			application.postazioni = new Postazioni();
+			application.postazioni.url = "api/public/postazioni";
+			application.postazioni.fetchPage();
 		};
 		application.buildNewLoginInfo();
+		
+		
 		
 		application.modalDialog = new ModalDialogView();
 		$("#modaldialog").html(application.modalDialog.render().el);

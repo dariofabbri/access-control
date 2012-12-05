@@ -29,14 +29,14 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("/security")
+@Path("/")
 @Produces("application/json")
 public class SecurityResource extends BaseResource {
 
 	private static final Logger logger = LoggerFactory.getLogger(SecurityResource.class);
 	
 	@POST
-	@Path("/sessions")
+	@Path("/public/security/sessions")
 	@Consumes("application/json")
 	public Response createSession(SecurityDTO dto) {
 
@@ -83,7 +83,7 @@ public class SecurityResource extends BaseResource {
 	
 	
 	@DELETE
-	@Path("/sessions/{token}")
+	@Path("/public/security/sessions/{token}")
 	public Response deleteSession(
 			@PathParam("token") String token) {
 
@@ -126,7 +126,7 @@ public class SecurityResource extends BaseResource {
 	
 	
 	@GET
-	@Path("/grants/{action}")
+	@Path("/security/grants/{action}")
 	public Response checkGrant(
 			@PathParam("action") String action) {
 
@@ -148,7 +148,7 @@ public class SecurityResource extends BaseResource {
 	
 	
 	@GET
-	@Path("/grants")
+	@Path("/security/grants")
 	public Response checkGrants(
 			@QueryParam("actions") String actions) {
 
@@ -180,7 +180,7 @@ public class SecurityResource extends BaseResource {
 	
 	
 	@GET
-	@Path("/check")
+	@Path("/security/check")
 	public Response checkSession() {
 
 		logger.debug("checkSession called!");

@@ -17,7 +17,7 @@ define([
 			permissions: null
 		},
 
-		urlRoot: "api/security/sessions",
+		urlRoot: "api/public/security/sessions",
 		
 		idAttribute: "securityToken",
 		

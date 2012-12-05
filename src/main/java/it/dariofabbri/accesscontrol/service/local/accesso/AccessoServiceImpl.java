@@ -1,6 +1,7 @@
 package it.dariofabbri.accesscontrol.service.local.accesso;
 
 import it.dariofabbri.accesscontrol.model.accesscontrol.Accesso;
+import it.dariofabbri.accesscontrol.model.accesscontrol.Postazione;
 import it.dariofabbri.accesscontrol.model.accesscontrol.StatoAccesso;
 import it.dariofabbri.accesscontrol.model.accesscontrol.Visitatore;
 import it.dariofabbri.accesscontrol.model.security.User;
@@ -18,6 +19,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 	@Override
 	public QueryResult<Accesso> listAccessi(
 			Integer stato,
+			Integer idPostazione,
 			String passi,
 			String destinatario,
 			String autorizzatoDa,
@@ -30,10 +32,11 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Integer offset,
 			Integer limit) {
 
-		QueryAccessoByStatoPassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore q = 
-				new QueryAccessoByStatoPassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore(session);
+		QueryAccessoByStatoPostazionePassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore q = 
+				new QueryAccessoByStatoPostazionePassiDestinatarioAutorizzatoDaIngressoDaIngressoAUscitaDaUscitaANomeVisitatoreCognomeVisitatore(session);
 
 		q.setIdStato(stato);
+		q.setIdPostazione(idPostazione);
 		q.setPassi(passi);
 		q.setDestinatario(destinatario);
 		q.setAutorizzatoDa(autorizzatoDa);
@@ -57,6 +60,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 				"left join fetch acc.visitatore vis " +
 				"left join fetch acc.stato sta " +
 				"left join fetch acc.operatore ope " +
+				"left join fetch acc.postazione pos " +
 				"where acc.id = :id ";
 
 		
@@ -87,6 +91,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Integer idVisitatore, 
 			Integer idStato, 
 			Integer idOperatore,
+			Integer idPostazione,
 			String passi,
 			String destinatario, 
 			String autorizzatoDa, 
@@ -109,6 +114,11 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		if(operatore == null) {
 			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
 		}
+		
+		Postazione postazione = (Postazione)session.get(Postazione.class, idPostazione);
+		if(postazione == null) {
+			throw new ServiceException("Unable to look up postazione using passed id: " + idPostazione); 
+		}
 
 		if(ingresso == null) {
 			ingresso = new Date();
@@ -118,6 +128,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setVisitatore(visitatore);
 		accesso.setStato(stato);
 		accesso.setOperatore(operatore);
+		accesso.setPostazione(postazione);
 		accesso.setPassi(passi);
 		accesso.setDestinatario(destinatario);
 		accesso.setAutorizzatoDa(autorizzatoDa);
@@ -139,6 +150,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 			Integer idVisitatore, 
 			Integer idStato, 
 			Integer idOperatore,
+			Integer idPostazione,
 			String passi,
 			String destinatario, 
 			String autorizzatoDa, 
@@ -173,7 +185,14 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		if(operatore == null) {
 			throw new ServiceException("Unable to look up operatore using passed id: " + idOperatore); 
 		}
-		
+
+		// Fetch postazione.
+		//
+		Postazione postazione = (Postazione)session.get(Postazione.class, idPostazione);
+		if(postazione == null) {
+			throw new ServiceException("Unable to look up postazione using passed id: " + idPostazione); 
+		}
+
 		// Check current status and verify possible transitions.
 		// In case update uscita field.
 		//
@@ -191,6 +210,7 @@ public class AccessoServiceImpl extends AbstractService implements AccessoServic
 		accesso.setVisitatore(visitatore);
 		accesso.setStato(stato);
 		accesso.setOperatore(operatore);
+		accesso.setPostazione(postazione);
 		accesso.setPassi(passi);
 		accesso.setDestinatario(destinatario);
 		accesso.setAutorizzatoDa(autorizzatoDa);
