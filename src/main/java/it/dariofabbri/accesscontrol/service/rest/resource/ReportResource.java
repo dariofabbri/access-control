@@ -71,7 +71,8 @@ public class ReportResource extends BaseResource {
 	@Path("/listaaccessi")
 	public Response getListaAccessiReport(
 			@QueryParam("dataDa") DateParam dataDa,
-			@QueryParam("dataA") DateParam dataA)
+			@QueryParam("dataA") DateParam dataA,
+			@QueryParam("idPostazione") Integer idPostazione)
 	{
 		logger.debug("getListaAccessiReport called!");
 		
@@ -94,6 +95,7 @@ public class ReportResource extends BaseResource {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("dataDa", new Timestamp(dataDa.getValue().getTime()));
 		parameters.put("dataA", new Timestamp(dataA.getValue().getTime()));
+		parameters.put("idPostazione", idPostazione);
 		
 		ReportService rs = new ReportService();
 		byte[] report = rs.generateReport("reports/listaaccessi.jasper", parameters);

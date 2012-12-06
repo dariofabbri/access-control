@@ -29,7 +29,7 @@ define([
 			this.$el.html(_.template(loginPanelTemplate));
 			
 			
-			// Populate drop down lists.
+			// Populate postazioni drop down list.
 			//
 			var that = this;
 			_.each(application.postazioni.models, function(item) {

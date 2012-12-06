@@ -27,6 +27,26 @@ define([
 		render: function() {
 
 			this.$el.html(_.template(parameterTemplate, this.model.toJSONView()));
+			
+			
+			// Populate postazioni drop down list.
+			//
+			var that = this;
+			_.each(application.postazioni.models, function(item) {
+				
+				var $option = $("<option/>")
+					.appendTo($("select#idPostazione", that.$el))
+					.attr("value", item.get("id"))
+					.text(item.get("descrizione"));
+
+				// Set selected item.
+				//
+				if(item.get("id") === that.model.get("idPostazione")) {
+					$option.attr("selected", true);
+				}
+			});
+
+			
 			return this;
 		},
 		
@@ -48,10 +68,12 @@ define([
 						
 			var dataDa = $("#dataDa").val();
 			var dataA = $("#dataA").val();
+			var idPostazione = $("#idPostazione").val();
 
 			var result = this.model.set({
 				dataDa: dataDa,
-				dataA: dataA
+				dataA: dataA,
+				idPostazione: idPostazione
 			});
 			
 			if(result) {

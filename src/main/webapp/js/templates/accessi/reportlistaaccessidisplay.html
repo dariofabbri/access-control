@@ -5,6 +5,9 @@ var url = "api/reports/listaaccessi?x-security-token=" +
 	encodeURIComponent(dataDa) +
 	"&dataA=" +
 	encodeURIComponent(dataA);
+if(!_.isEmpty(idPostazione)) {
+	url += "&idPostazione=" + encodeURIComponent(idPostazione);
+}
 %>
 <h3>Report accessi</h3>
 <p>

@@ -19,6 +19,7 @@ define([
 			this.$el.html(_.template(reportTemplate, {
 				dataDa: m.dataDa,
 				dataA: m.dataA,
+				idPostazione: m.idPostazione,
 				token: application.loginInfo.get("securityToken")
 			}));
 			return this;
